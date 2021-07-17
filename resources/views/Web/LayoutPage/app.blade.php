@@ -17,7 +17,7 @@
         <!-- Custom styles for this template-->
         <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
         
         <!-- CUSTOM CSS BACKGROUND -->
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -44,7 +44,7 @@
     
   
     
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     @yield('script')
     </body> 
     </html>

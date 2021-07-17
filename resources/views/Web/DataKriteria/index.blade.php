@@ -17,54 +17,8 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        
-
                         <!-- Nav Item - User Information -->
                         @include('Web.LayoutPage.profileHeader')
 
@@ -74,7 +28,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid"  style="overflow-x:auto;">
+                <div class="container-fluid" >
                     
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Data Kriteria</h1>
@@ -89,11 +43,11 @@
                         </div>
                     </div>
                     <div class="container mt-3">
-                        <table class="table table-bordered text-center table-sm" id="dtHorizontalVerticalExample" width="100%">
+                        <table class="table table-bordered text-center table-sm" id="dtHorizontalVerticalExample">
                             <thead class="table-warning">
                                 <tr>
                                     <th>No</th>
-                                    <th >Kode Kriteria</th>
+                                    <th>Kode Kriteria</th>
                                     <th>Kriteria</th>
                                     <th>Bobot</th>
                                     <th>Deskripsi</th>
@@ -121,6 +75,31 @@
                                 </tbody>
                         </table>
                     </div>
+                    <br>
+                    <div class="container mt-3">
+                        <table class="table table-bordered text-center table-sm" id="dtHorizontalVerticalExample">
+                            <thead class="table-warning">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kriteria</th>
+                                    <th>Bobot</th>
+                                    <th>Hasil Normalisasi</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 0; ?>
+                                    @foreach ($data as $item)
+                                    <?php $no++ ?>
+                                    <tr>
+                                        <td>{{ $no }}</td>
+                                        <td>{{ $item->nama_kriteria }}</td>
+                                        <td>{{ $item->bobot }}</td>
+                                        <td>{{ round(($item->bobot) / $count_kriteria,3) }}</td>
+                                        </tr>
+                                        @endforeach
+                                </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -128,7 +107,7 @@
             <!-- End of Main Content -->
             
             <!-- Footer -->
-            @include('Web.LayoutPage.footer')
+            {{-- @include('Web.LayoutPage.footer') --}}
             <!-- End of Footer -->
 
         </div>
@@ -215,10 +194,7 @@
 <script>
         
         $(document).ready(function () {
-            $('#dtHorizontalVerticalExample').DataTable({
-            "scrollX": true,
-            "scrollY": 200,
-            });
+            $('#dtHorizontalVerticalExample').DataTable();
             $('.dataTables_length').addClass('bs-select');
             });
             

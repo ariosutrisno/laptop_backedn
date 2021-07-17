@@ -25,7 +25,8 @@ class DataLaptopKriteriaController extends Controller
     {
         $idx_kriteria = $this->datakriteria->id_kriteria();
         $data = $this->datakriteria->listdata();
-        return view('Web.DataKriteria.index',compact('idx_kriteria','data'));
+        $count_kriteria = $this->datakriteria->count_kriteria();
+        return view('Web.DataKriteria.index',compact('idx_kriteria','data','count_kriteria'));
     }
 
     /**

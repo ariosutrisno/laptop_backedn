@@ -38,7 +38,7 @@
                                 <li><a href="#about">About Us</a></li>
                                 <li><a href="#contact">Contact Us</a></li>
                                 <li><a href="{{ __('login') }}">Login</a></li>
-                                <li><a href="{{ __('register') }}">Register</a></li>
+                                {{-- <li><a href="{{ __('register') }}">Register</a></li> --}}
                                 @else
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

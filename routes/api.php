@@ -46,7 +46,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     //DATA NORMALISASI
     Route::get('datanormalisasi', 'api\Input\DataLaptopNormalisasiController@getData');
 
-    
+    // Data Alternatif
+    Route::get('alternatif','api\Input\DataLaptopAlternatifController@getData');
     //Data Utility & Perhitungan
     Route::get('utility', 'api\Input\DataPerhitunganController@utility');
     Route::get('perhitungan', 'api\Input\DataPerhitunganController@perhitungan');

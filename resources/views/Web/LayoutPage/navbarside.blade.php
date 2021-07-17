@@ -38,7 +38,6 @@
                 <h6 class="collapse-header">Data Laptop</h6>
                 <a class="collapse-item" href="{{ route('datalaptop') }}">All Data Laptop</a>
                 <a class="collapse-item" href="{{ route('getKriteria') }}">All Data Kriteria</a>
-                <a class="collapse-item" href="{{ route('datanormalisasi') }}">Data Normalisasi</a>
                 <a class="collapse-item" href="{{ route('getAlternatif') }}">All Data Alternatif</a>
                 <a class="collapse-item" href="{{ route('dataUltility') }}">Nilai Utility laptop</a>
                 <a class="collapse-item" href="{{ route('perhitungan') }}">Hasil Perhitungan</a>

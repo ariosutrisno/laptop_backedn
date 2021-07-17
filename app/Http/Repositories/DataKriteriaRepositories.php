@@ -12,9 +12,12 @@ use Carbon\Carbon;
 class DataKriteriaRepositories
 {
     public function listdata(){
-
-        
         $dataKriteria = DB::table('data_kriteria')->get();
+        return $dataKriteria;
+        
+    }
+    public function count_kriteria(){
+        $dataKriteria = DB::table('data_kriteria')->sum('bobot');
         return $dataKriteria;
         
     }
