@@ -57,17 +57,6 @@ class DataAlternatifRepositories
         $data = DB::table('data_alternatif')->where('idx_alternatif','=',$idx_alternatif)->delete();
         return $data;
     }
-    
-    public function max_min()
-    {
-        // $max_alternatif = DB::table('data_alternatif')->orderBy('alternatif','asc')->get();
-        // foreach ($max_alternatif as $max=>$val) {
-        //     # code...
-        //     echo $val->c6 . '<br>';
-        // }
-        // dd($max_alternatif);
-        // return $max_alternatif;
-    }
 
     /* 
     *

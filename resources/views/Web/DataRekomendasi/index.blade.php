@@ -17,53 +17,8 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        
 
                         <!-- Nav Item - User Information -->
                         @include('Web.LayoutPage.profileHeader')
@@ -77,20 +32,18 @@
                 <div class="container-fluid"  style="overflow-x:auto;">
                     
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Data Rekomendasi Laptop</h1>
-                    <div class="float-right mb-3">
+                    <h1 class="h3 mb-4 text-gray-800">Data Request User</h1>
+                    {{-- <div class="float-right mb-3">
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
                         </div>
-                    </div>
-                    <table class="table table-bordered text-center" id="dtHorizontalVerticalExample" width="100%">
+                    </div> --}}
+                    <table class="table table-bordered text-center" id="dtHorizontalVerticalExample">
                         <thead class="table-warning">
                             <tr>
                                 <th>NO</th>
                                 <th>Merk Laptop</th>
-                                <th>Tipe Laptop</th>
                                 <th>Harga</th>
-                                <th>Opsi</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -100,14 +53,7 @@
                                     <tr>
                                         <td>{{ $no }}</td>
                                         <td>{{ $item->merek_laptop }}</td>
-                                        <td>{{ $item->type_laptop }}</td>
                                         <td>{{ $item->harga_laptop }}</td>
-                                        <td>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="#"  class="btn btn-warning btn-edit" data-toggle="modal" data-id="{{ $item->idx_rekomendasi }}" data-target="#modaledit">Edit</a>
-                                                <a href="{{ url('/datarekomendasi/'. $item->idx_rekomendasi . '/delete') }}" class="btn btn-danger">Delete</a>
-                                            </div>
-                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -119,7 +65,7 @@
             <!-- End of Main Content -->
             
             <!-- Footer -->
-            @include('Web.LayoutPage.footer')
+            {{-- @include('Web.LayoutPage.footer') --}}
             <!-- End of Footer -->
 
         </div>
@@ -184,10 +130,7 @@
 <script>
         
         $(document).ready(function () {
-            $('#dtHorizontalVerticalExample').DataTable({
-            "scrollX": true,
-            "scrollY": 200,
-            });
+            $('#dtHorizontalVerticalExample').DataTable();
             $('.dataTables_length').addClass('bs-select');
             });
 

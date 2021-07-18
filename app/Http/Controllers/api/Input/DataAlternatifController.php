@@ -20,7 +20,7 @@ class DataAlternatifController extends ApiController
     {
         $this->alternatif = $alternatif;
     }
-    public function index()
+    public function getData()
     {
         $get_alternatif = $this->alternatif->listData();
         if (collect($get_alternatif)->count()) {
@@ -29,70 +29,14 @@ class DataAlternatifController extends ApiController
             return $this->sendResponse(0, 19, []);
         }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function utility()
     {
-        //
+        $utility = $this->alternatif->listData();
+        if (collect($utility)->count()) {
+            return $this->sendResponse(0, 19,$utility);
+        } else {
+            return $this->sendResponse(0, 19, []);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

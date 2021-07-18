@@ -32,8 +32,7 @@ class DataLaptopAlternatifController extends Controller
         $data_laptop = $this->dataalternatif->datalaptop();
         $data = $this->dataalternatif->listData();
         $array = $this->dataalternatif->array();
-        $max_alternatif = $this->dataalternatif->max_min();
-        return view('Web.DataAlternatif.index',compact('data','display','ram','storage','vga','procesor','harga','data_laptop','array','max_alternatif'));
+        return view('Web.DataAlternatif.index',compact('data','display','ram','storage','vga','procesor','harga','data_laptop','array'));
     }
 
     

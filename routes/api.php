@@ -39,19 +39,13 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     Route::get('datalaptop', 'api\Input\DataLaptopController@getAll');
     Route::get('datalaptop/{idx_datalaptop}/view', 'api\Input\DataLaptopController@viewdata');
 
-    //Data Kriteria
-    Route::get('dataKriteria', 'api\Input\DataKriteriaController@getAll');
-
-    //DATA NORMALISASI
-    Route::get('datanormalisasi', 'api\Input\DataLaptopNormalisasiController@getData');
+    //Data Kriteria && Normalisasi
+    Route::get('datakriteria', 'api\Input\DataKriteriaController@getAll');
+    Route::get('datanormalisasi', 'api\Input\DataKriteriaController@normalisasi');
 
     // Data Alternatif
-    Route::get('alternatif','api\Input\DataLaptopAlternatifController@getData');
-    //Data Utility & Perhitungan
-    Route::get('utility', 'api\Input\DataPerhitunganController@utility');
-    Route::get('perhitungan', 'api\Input\DataPerhitunganController@perhitungan');
-
-    //Data Rangking
+    Route::get('alternatif','api\Input\DataAlternatifController@getData');
+    Route::get('utility', 'api\Input\DataAlternatifController@utility');
     Route::get('ranking', 'api\Input\DataRankingController@getAllData');
 });
 Route::post('register', 'api\Register\RegisterController@registerAsUser');
