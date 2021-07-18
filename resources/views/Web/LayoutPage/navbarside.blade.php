@@ -37,9 +37,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Laptop</h6>
                 <a class="collapse-item" href="{{ route('datalaptop') }}">All Data Laptop</a>
-                <a class="collapse-item" href="{{ route('getKriteria') }}">All Data Kriteria</a>
-                <a class="collapse-item" href="{{ route('getAlternatif') }}">All Data Alternatif</a>
-                <a class="collapse-item" href="{{ route('dataUltility') }}">Nilai Utility laptop</a>
+                <a class="collapse-item" href="{{ route('getKriteria') }}">Data Kriteria</a>
+                <a class="collapse-item" href="{{ route('getAlternatif') }}">Data Alternatif & Utility</a>
                 <a class="collapse-item" href="{{ route('perhitungan') }}">Hasil Perhitungan</a>
                 <a class="collapse-item" href="{{ route('getRangking') }}">Ranking</a>
                 <a class="collapse-item" href="{{ route('datarekomendasi') }}">Data Request Customer</a>

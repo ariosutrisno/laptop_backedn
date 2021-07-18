@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-// Route::get('dataKriteria', 'api\Input\DataKriteriaController@getAll');
 Route::post('login', 'api\auth\AuthController@login');
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     //USER

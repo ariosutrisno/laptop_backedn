@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     
-                    <table class="table table-bordered text-center" id="dtHorizontalVerticalExample" width="100%">
+                    <table class="table table-bordered text-center" id="dtHorizontalVerticalExample">
                         <thead class="table-warning">
                             <tr>
                                 <th>NO</th>
@@ -241,16 +241,10 @@
 <script>
         
         $(document).ready(function () {
-            $('#dtHorizontalVerticalExample').DataTable({
-            "scrollX": true,
-            "scrollY": 200,
-            });
+            $('#dtHorizontalVerticalExample').DataTable();
             $('.dataTables_length').addClass('bs-select');
             });
             
-
-            
-
 
 </script>
 @endsection
