@@ -73,7 +73,7 @@ class DataKriteriaRepositories
         $data_normalisasi->data_kriteria_get = $data_kriteria_get =  DB::table('data_kriteria')->get();
         for ($i=0; $i < count($data_kriteria_get); $i++) { 
             # code...
-            $data_kriteria_get[$i] = $data_kriteria_get[$i]->bobot / $total_kriteria;
+            $data_kriteria_get[$i] = round($data_kriteria_get[$i]->bobot / $total_kriteria,3);
         }
         return $data_normalisasi;
     }
