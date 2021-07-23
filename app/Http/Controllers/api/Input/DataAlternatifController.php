@@ -31,7 +31,7 @@ class DataAlternatifController extends ApiController
     }
     public function utility()
     {
-        $utility = $this->alternatif->listData();
+        $utility = $this->alternatif->nilaiutility();
         if (collect($utility)->count()) {
             return $this->sendResponse(0, 19,$utility);
         } else {

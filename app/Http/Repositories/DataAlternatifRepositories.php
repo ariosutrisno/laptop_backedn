@@ -57,7 +57,26 @@ class DataAlternatifRepositories
         $data = DB::table('data_alternatif')->where('idx_alternatif','=',$idx_alternatif)->delete();
         return $data;
     }
-
+    /* 
+    * HITUNG NILAI UTILITY
+    *
+    */
+    public function nilaiutility()
+    {
+        $data = new DataAlternatifRepositories();
+        $data->data = $alternatif= DB::table('data_alternatif')->get();
+        foreach ($alternatif as $key => $value) {
+            # code...
+            // round((($item->c1 - $data->min('c1')) / ($data->max('c1')-$data->min('c1'))),3)
+            $data->loop1 = round(($value->c1 - $alternatif->min('c1')) / ($alternatif->max('c1')-$alternatif->min('c1')),3);
+            $data->loop2 = round(($value->c2 - $alternatif->min('c2')) / ($alternatif->max('c2')-$alternatif->min('c2')),3);
+            $data->loop3 = round(($value->c3 - $alternatif->min('c3')) / ($alternatif->max('c3')-$alternatif->min('c3')),3);
+            $data->loop4 = round(($value->c4 - $alternatif->min('c4')) / ($alternatif->max('c4')-$alternatif->min('c4')),3);
+            $data->loop5 = round(($value->c5 - $alternatif->min('c5')) / ($alternatif->max('c5')-$alternatif->min('c5')),3);
+            $data->loop6 = round(($value->c6 - $alternatif->min('c6')) / ($alternatif->max('c6')-$alternatif->min('c6')),3);
+        }
+        return $data;
+    }
     /* 
     *
     *FUNGSI DATA SUB KRITERIA
