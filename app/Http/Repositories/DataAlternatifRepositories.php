@@ -65,15 +65,18 @@ class DataAlternatifRepositories
     {
         $data = new DataAlternatifRepositories();
         $data->alternatif = $alternatif= DB::table('data_alternatif')->get();
-            foreach ($alternatif as $alter) {
-                # code...
-                $data->utility1[] = round(($alter->c1 - $alternatif->min('c1')) / ($alternatif->max('c1')-$alternatif->min('c1')),3);
-                $data->utility2[] = round(($alter->c2 - $alternatif->min('c2')) / ($alternatif->max('c2')-$alternatif->min('c2')),3);
-                $data->utility3[] = round(($alter->c3 - $alternatif->min('c3')) / ($alternatif->max('c3')-$alternatif->min('c3')),3);
-                $data->utility4[] = round(($alter->c4 - $alternatif->min('c4')) / ($alternatif->max('c4')-$alternatif->min('c4')),3);
-                $data->utility5[] = round(($alter->c5 - $alternatif->min('c5')) / ($alternatif->max('c5')-$alternatif->min('c5')),3);
-                $data->utility6[] = round(($alter->c6 - $alternatif->min('c6')) / ($alternatif->max('c6')-$alternatif->min('c6')),3);
-            }
+        $data->min1 = $alternatif->min('c1');
+        $data->max1 = $alternatif->max('c1');
+        $data->min2 = $alternatif->min('c2');
+        $data->max2 = $alternatif->max('c2');
+        $data->min3 = $alternatif->min('c3');
+        $data->max3 = $alternatif->max('c3');
+        $data->min4 = $alternatif->min('c4');
+        $data->max4 = $alternatif->max('c4');
+        $data->min5 = $alternatif->min('c5');
+        $data->max5 = $alternatif->max('c5');
+        $data->min6 = $alternatif->min('c6');
+        $data->max6 = $alternatif->max('c6');
         return $data;
     }
     /* 
