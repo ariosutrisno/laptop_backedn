@@ -164,7 +164,7 @@
                                 @endphp
                                 @foreach ($perhitungan as $datas)
                                         @php
-                                            $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
+                                                $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
                                                 $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
                                                 $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
                                                 $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
