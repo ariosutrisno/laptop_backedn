@@ -64,7 +64,7 @@ class DataAlternatifRepositories
     public function nilaiutility()
     {
         $data = new DataAlternatifRepositories();
-        $data->alternatif[] = $alternatif= DB::table('data_alternatif')->get();
+        $data->alternatif = $alternatif= DB::table('data_alternatif')->get();
         $bobot= DB::table('data_kriteria')->get();
         $data->min1 = $alternatif->min('c1');
         $data->max1 = $alternatif->max('c1');
