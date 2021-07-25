@@ -93,7 +93,7 @@ class DataAlternatifRepositories
             $rank4= round(($alter->c4 - $data->min4) / ($data->max4 - $data->min4),3) * ($data->bobot4);
             $rank5= round(($alter->c5 - $data->min5) / ($data->max5 - $data->min5),3) * ($data->bobot5);
             $rank6= round(($alter->c6 - $data->min6) / ($data->max6 - $data->min6),3) * ($data->bobot6);
-            $data->alternatif[] = (round(($rank1+$rank2+$rank3+$rank4+$rank5+$rank6),3));
+            $data->rank[] = (round(($rank1+$rank2+$rank3+$rank4+$rank5+$rank6),3));
         }
         return $data;
     }
