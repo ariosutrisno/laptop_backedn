@@ -19,53 +19,10 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
+                
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        
 
                         <!-- Nav Item - User Information -->
                         @include('Web.LayoutPage.profileHeader')
@@ -76,7 +33,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid"  style="overflow-x:auto;">
+                <div class="container-fluid">
                     
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Hasil Perhitungan </h1>
@@ -87,110 +44,113 @@
                         </div>
                     </div>
                     
-                    <table class="table table-bordered text-center" id="dtHorizontalVerticalExample">
-                        <thead class="table-warning">
-                            <tr>
-                                <th>NO</th>
-                                <th>Kode Alternatif</th>
-                                <th>Nama Alternatif</th>
-                                <th>Hasil Perhitungan</th>
-                            </tr>
+                    <div class="container mt-4">
+                        <table id="example" class="table-success" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>Kode Alternatif</th>
+                                    <th>Nama Alternatif</th>
+                                    <th>Hasil Perhitungan</th>
+                                    <th>Ranking</th>
+                                    
+                                </tr>
                             </thead>
+                            <?php $no = 0; ?>
+                            <?php $no++ ?>
+                            @php
+                            $perhitungan = DB::table('data_alternatif')->get();
+                            $data2 = DB::table('data_kriteria')->sum('bobot');
+                            $normalisasi_bobot_1 = DB::table('data_kriteria')->select('bobot')
+                            ->where('idx_kriteria','=',2)
+                            ->value('bobot');
+                            $normalisasi_bobot_2 = DB::table('data_kriteria')->select('bobot')
+                            ->where('idx_kriteria','=',3)
+                            ->value('bobot');
+                            $normalisasi_bobot_3 = DB::table('data_kriteria')->select('bobot')
+                            ->where('idx_kriteria','=',4)
+                            ->value('bobot');
+                            $normalisasi_bobot_4 = DB::table('data_kriteria')->select('bobot')
+                            ->where('idx_kriteria','=',5)
+                            ->value('bobot');
+                            $normalisasi_bobot_5 = DB::table('data_kriteria')->select('bobot')
+                            ->where('idx_kriteria','=',6)
+                            ->value('bobot');
+                            $normalisasi_bobot_6 = DB::table('data_kriteria')->select('bobot')
+                            ->where('idx_kriteria','=',8)
+                            ->value('bobot');
+                            /* 
+                            *NORMALISASI BOBOT
+                            */
+                            $hasil_bobot1 = $normalisasi_bobot_1 / $data2;
+                            $hasil_bobot2 = $normalisasi_bobot_2 / $data2;
+                            $hasil_bobot3 = $normalisasi_bobot_3 / $data2;
+                            $hasil_bobot4 = $normalisasi_bobot_4 / $data2;
+                            $hasil_bobot5 = $normalisasi_bobot_5 / $data2;
+                            $hasil_bobot6 = $normalisasi_bobot_6 / $data2;
+                            $dataMax1 = $perhitungan->max('c1');
+                            $dataMin1 = $perhitungan->min('c1');
+                            $dataMax2 = $perhitungan->max('c2');
+                            $dataMin2 = $perhitungan->min('c2');
+                            $dataMax3 = $perhitungan->max('c3');
+                            $dataMin3 = $perhitungan->min('c3');
+                            $dataMax4 = $perhitungan->max('c4');
+                            $dataMin4 = $perhitungan->min('c4');
+                            $dataMax5 = $perhitungan->max('c5');
+                            $dataMin5 = $perhitungan->min('c5');
+                            $dataMax6 = $perhitungan->max('c6');
+                            $dataMin6 = $perhitungan->min('c6');
+                            foreach ($perhitungan as $datas) {
+                                # code...
+                                $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
+                                $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
+                                $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
+                                $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
+                                $datautility5 = (($datas->c5 - $dataMin5) / ($dataMax5 - $dataMin5));
+                                $datautility6 = (($datas->c6 - $dataMin6) / ($dataMax6 - $dataMin6));
+
+                                $hitungkali1 = number_format(($hasil_bobot1*$datautility1),4);
+                                $hitungkali2 = number_format(($hasil_bobot2*$datautility2),4);
+                                $hitungkali3 = number_format(($hasil_bobot3*$datautility3),4);
+                                $hitungkali4 = number_format(($hasil_bobot4*$datautility4),4);
+                                $hitungkali5 = number_format(($hasil_bobot5*$datautility5),4);
+                                $hitungkali6 = number_format(($hasil_bobot6*$datautility6),4);
+                                
+                                $perhitungan->rank = ($hitungkali1 + $hitungkali2 + $hitungkali3 + $hitungkali4 + $hitungkali5 + $hitungkali6 );
+                                
+                            }
+                        @endphp
+                            @foreach ($perhitungan as $datas)
+                            @php
+                                    $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
+                                    $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
+                                    $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
+                                    $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
+                                    $datautility5 = (($datas->c5 - $dataMin5) / ($dataMax5 - $dataMin5));
+                                    $datautility6 = (($datas->c6 - $dataMin6) / ($dataMax6 - $dataMin6));
+
+                                    $hitungkali1 = number_format(($hasil_bobot1*$datautility1),4);
+                                    $hitungkali2 = number_format(($hasil_bobot2*$datautility2),4);
+                                    $hitungkali3 = number_format(($hasil_bobot3*$datautility3),4);
+                                    $hitungkali4 = number_format(($hasil_bobot4*$datautility4),4);
+                                    $hitungkali5 = number_format(($hasil_bobot5*$datautility5),4);
+                                    $hitungkali6 = number_format(($hasil_bobot6*$datautility6),4);
+                                    
+                                    $perhitungan->rank =  ($hitungkali1 + $hitungkali2 + $hitungkali3 + $hitungkali4 + $hitungkali5 + $hitungkali6 );
+                                    
+                            @endphp
                             <tbody>
-                                <?php $no = 0; ?>
-                                <?php $no++ ?>
-                                <!--PHP NATIVE RANKING -->
-                                    @php
-                                    $perhitungan = DB::table('data_alternatif')->get();
-                                    $data2 = DB::table('data_kriteria')->sum('bobot');
-                                    $normalisasi_bobot_1 = DB::table('data_kriteria')->select('bobot')
-                                    ->where('idx_kriteria','=',2)
-                                    ->value('bobot');
-                                    $normalisasi_bobot_2 = DB::table('data_kriteria')->select('bobot')
-                                    ->where('idx_kriteria','=',3)
-                                    ->value('bobot');
-                                    $normalisasi_bobot_3 = DB::table('data_kriteria')->select('bobot')
-                                    ->where('idx_kriteria','=',4)
-                                    ->value('bobot');
-                                    $normalisasi_bobot_4 = DB::table('data_kriteria')->select('bobot')
-                                    ->where('idx_kriteria','=',5)
-                                    ->value('bobot');
-                                    $normalisasi_bobot_5 = DB::table('data_kriteria')->select('bobot')
-                                    ->where('idx_kriteria','=',6)
-                                    ->value('bobot');
-                                    $normalisasi_bobot_6 = DB::table('data_kriteria')->select('bobot')
-                                    ->where('idx_kriteria','=',8)
-                                    ->value('bobot');
-                                    /* 
-                                    *NORMALISASI BOBOT
-                                    */
-                                    $hasil_bobot1 = $normalisasi_bobot_1 / $data2;
-                                    $hasil_bobot2 = $normalisasi_bobot_2 / $data2;
-                                    $hasil_bobot3 = $normalisasi_bobot_3 / $data2;
-                                    $hasil_bobot4 = $normalisasi_bobot_4 / $data2;
-                                    $hasil_bobot5 = $normalisasi_bobot_5 / $data2;
-                                    $hasil_bobot6 = $normalisasi_bobot_6 / $data2;
-                                    $dataMax1 = $perhitungan->max('c1');
-                                    $dataMin1 = $perhitungan->min('c1');
-                                    $dataMax2 = $perhitungan->max('c2');
-                                    $dataMin2 = $perhitungan->min('c2');
-                                    $dataMax3 = $perhitungan->max('c3');
-                                    $dataMin3 = $perhitungan->min('c3');
-                                    $dataMax4 = $perhitungan->max('c4');
-                                    $dataMin4 = $perhitungan->min('c4');
-                                    $dataMax5 = $perhitungan->max('c5');
-                                    $dataMin5 = $perhitungan->min('c5');
-                                    $dataMax6 = $perhitungan->max('c6');
-                                    $dataMin6 = $perhitungan->min('c6');
-                                    foreach ($perhitungan as $datas) {
-                                        # code...
-                                        $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
-                                        $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
-                                        $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
-                                        $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
-                                        $datautility5 = (($datas->c5 - $dataMin5) / ($dataMax5 - $dataMin5));
-                                        $datautility6 = (($datas->c6 - $dataMin6) / ($dataMax6 - $dataMin6));
-
-                                        $hitungkali1 = number_format(($hasil_bobot1*$datautility1),4);
-                                        $hitungkali2 = number_format(($hasil_bobot2*$datautility2),4);
-                                        $hitungkali3 = number_format(($hasil_bobot3*$datautility3),4);
-                                        $hitungkali4 = number_format(($hasil_bobot4*$datautility4),4);
-                                        $hitungkali5 = number_format(($hasil_bobot5*$datautility5),4);
-                                        $hitungkali6 = number_format(($hasil_bobot6*$datautility6),4);
-                                        
-                                        $perhitungan->rank = ($hitungkali1 + $hitungkali2 + $hitungkali3 + $hitungkali4 + $hitungkali5 + $hitungkali6 );
-                                        
-                                    }
-                                @endphp
-                                @foreach ($perhitungan as $datas)
-                                        @php
-                                                $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
-                                                $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
-                                                $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
-                                                $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
-                                                $datautility5 = (($datas->c5 - $dataMin5) / ($dataMax5 - $dataMin5));
-                                                $datautility6 = (($datas->c6 - $dataMin6) / ($dataMax6 - $dataMin6));
-
-                                                $hitungkali1 = number_format(($hasil_bobot1*$datautility1),4);
-                                                $hitungkali2 = number_format(($hasil_bobot2*$datautility2),4);
-                                                $hitungkali3 = number_format(($hasil_bobot3*$datautility3),4);
-                                                $hitungkali4 = number_format(($hasil_bobot4*$datautility4),4);
-                                                $hitungkali5 = number_format(($hasil_bobot5*$datautility5),4);
-                                                $hitungkali6 = number_format(($hasil_bobot6*$datautility6),4);
-                                                
-                                                $perhitungan->rank =  ($hitungkali1 + $hitungkali2 + $hitungkali3 + $hitungkali4 + $hitungkali5 + $hitungkali6 );
-                                                // $data12 = array(($hitungkali1 + $hitungkali2 + $hitungkali3 + $hitungkali4 + $hitungkali5 + $hitungkali6 ));
-                                                // rsort($perhitungan->rank );
-                                        @endphp
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $datas->alternatif }}</td>
-                                        <td>{{ $datas->datalaptop }}</td>
-                                        <td>{{ $perhitungan->rank }}</td>
-                                    <tr>
-                                @endforeach
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $datas->alternatif }}</td>
+                                    <td>{{ $datas->datalaptop }}</td>
+                                    <td class="total">{{ $perhitungan->rank }}</td>
+                                    <td></td>
+                                </tr>
                             </tbody>
-                    </table>
+                            @endforeach
+                        </table>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -198,7 +158,7 @@
             <!-- End of Main Content -->
             
             <!-- Footer -->
-            @include('Web.LayoutPage.footer')
+            {{-- @include('Web.LayoutPage.footer') --}}
             <!-- End of Footer -->
 
         </div>
@@ -238,13 +198,25 @@
 @endsection
 
 @section('script')
-<script>
-        
-        $(document).ready(function () {
-            $('#dtHorizontalVerticalExample').DataTable();
-            $('.dataTables_length').addClass('bs-select');
-            });
-            
 
+<script>
+        $(document).ready(function() {
+            $('#example').DataTable( {
+                "pagingType": "full_numbers"
+            } );
+        } );
+
+</script>
+<script>
+    $(document).ready(function() {
+    $(".total")
+        .map(function(){return $(this).text()})
+        .get()
+        .sort(function(a,b){return a - b })
+        .reduce(function(a, b){ if (b != a[0]) a.unshift(b); return a }, [])
+        .forEach((v,i)=>{
+    $('.total').filter(function() {return $(this).text() == v;}).next().text(i + 1);
+    });
+});
 </script>
 @endsection
