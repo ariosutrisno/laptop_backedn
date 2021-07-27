@@ -1,31 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\api\auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-class LandingController extends Controller
+
+class ProfileController extends Controller
 {
-   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-//     public function __construct()
-// {
-//     $this->middleware(['role_or_permission:admin|Home']);
-// }
     public function index()
     {
-        
-        return view('Web.LandingPage.landing');
-    }
-    public function access()
-    {
-        return view('Web.LandingPage.homestatus');
+        //
     }
 
     /**
@@ -92,5 +82,20 @@ class LandingController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function details()
+    {
+        $result = $this->userRepository->getDetail(Auth::user()->users_code);
+
+        if (!empty($result)) {
+            $result = $this->sendResponse(0, 'Sukses', $result);
+
+        } elseif ($result === false) {
+            $result = $this->sendError(2, 4);
+        } else {
+            $result = $this->sendError(2, 4);
+        }
+
+        return $result;
     }
 }

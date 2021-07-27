@@ -30,7 +30,6 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid" >
                     
@@ -62,7 +61,7 @@
                                     <?php $no++ ?>
                                     <tr>
                                         <td>{{ $no }}</td>
-                                        <td><img src="{{ asset($item->gambar) }}"  width="100px"></td>
+                                        <td><img src="{{ asset("$item->gambar") }}"  width="100px"></td>
                                         <td>{{ $item->merek_laptop }}</td>
                                         <td>{{ $item->tipe }}</td>
                                         <td>{{ $item->ram }}</td>
@@ -128,12 +127,7 @@
 <script>
         
         $(document).ready(function () {
-            $('#dtHorizontalVerticalExample').DataTable({
-            "scrollX": true,
-            "scrollY": 200,
-            });
-            $('.dataTables_length').addClass('bs-select');
-            });
-
+            $('#dtHorizontalVerticalExample').DataTable();
+        });
 </script>
 @endsection

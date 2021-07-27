@@ -79,48 +79,47 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Data Laptop edit</h1>
                     <div class="overflow-auto">
-                        <form method="POST" action="{{ route('DataViewUpdated', $idx_datalaptop) }}">
+                        <form method="POST" action="{{ route('DataViewUpdated', $idx_datalaptop) }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Nomor Laptop</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nomor laptop" name="nomor_laptop" value="{{ $nomor_laptop->nomor_laptop }}">
-                            </div>
-                            <div class="form-group">
                                 <label for="exampleFormControlInput1">Merk Laptop</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Merk Laptop" name="merek" value="{{ old('merek') }}">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Merk Laptop" name="merek" value="{{ $edit_data->merek_laptop }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Tipe Laptop</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tipe Laptop" name="tipe" value="{{ old('tipe') }}">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tipe Laptop" name="tipe" value="{{ $edit_data->tipe }}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Processor</label> 
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Processor" name="processor" value="{{ old('processor') }}">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Processor" name="processor" value="{{ $edit_data->processor }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">RAM</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="RAM" name="ram" value="{{ old('ram') }}">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="RAM" name="ram" value="{{ $edit_data->ram }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Storage</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Storage" name="storage" value="{{ old('storage') }}">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Storage" name="storage" value="{{ $edit_data->storage }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">VGA Card</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="VGA Card" name="vga" value="{{ old('vga') }}">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="VGA Card" name="vga" value="{{ $edit_data->vga_card }}">
                             </div>
-                            
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Display</label> 
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Display" name="display" value="{{ $edit_data->display }}">
+                            </div>
                             
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Harga Laptop</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Harga Laptop" name="harga" value="{{ old('harga') }}">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Harga Laptop" name="harga" value="{{ $edit_data->harga }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Gambar Laptop</label>
                                 <div class="custom-file">
                                     <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                                    <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="gambar" value="{{ old('gambar') }}">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="image" multiple="true" value="{{ $edit_data->gambar }}">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -138,7 +137,7 @@
             <!-- End of Main Content -->
             
             <!-- Footer -->
-            @include('Web.LayoutPage.footer')
+            {{-- @include('Web.LayoutPage.footer') --}}
             <!-- End of Footer -->
 
         </div>

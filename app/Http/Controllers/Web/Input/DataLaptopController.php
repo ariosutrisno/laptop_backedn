@@ -70,8 +70,8 @@ class DataLaptopController extends Controller
      */
     public function edit($idx_datalaptop)
     {
-        $nomor_laptop = $this->datalaptop->editData($idx_datalaptop);
-        return view('Web.DataLaptop.edit',compact('nomor_laptop','idx_datalaptop'));
+        $edit_data = $this->datalaptop->editData($idx_datalaptop);
+        return view('Web.DataLaptop.edit',compact('edit_data','idx_datalaptop'));
     }
 
     /**
@@ -84,7 +84,7 @@ class DataLaptopController extends Controller
     public function updateData(Request $request, $idx_datalaptop)
     {
         $this->datalaptop->update($request, $idx_datalaptop);
-        return redirect()->back();
+        return redirect('datalaptop');
     }
 
     /**

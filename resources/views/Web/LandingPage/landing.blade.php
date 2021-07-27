@@ -24,7 +24,6 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
   </head>
   <body>
-      
     <header id="header" class="fixed-top header-transparent">
         <div class="container-fluid">
 
@@ -33,7 +32,12 @@
                     <h1 class="logo mr-auto"><a href="index.html">Laptop</a></h1>
                     <nav class="nav-menu d-none d-lg-block">
                         <ul>
-                            <li class="active"><a href="{{ route('dashboard') }}">Home</a></li>
+                            @role('admin')
+                                <li class="active"><a href="{{ route('dashboard') }}">Home</a></li>
+                            @else
+                                <li><a href="#about">About Us</a></li>
+                                <li><a href="#contact">Contact Us</a></li>
+                            @endrole
                             @guest
                                 <li><a href="#about">About Us</a></li>
                                 <li><a href="#contact">Contact Us</a></li>

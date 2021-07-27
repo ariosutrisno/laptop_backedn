@@ -21,6 +21,8 @@ Route::post('login', 'api\auth\AuthController@login');
 Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     //USER
     Route::post('logout', 'api\auth\AuthController@logout')->name('user.logout');
+    /* PROFILE */
+    Route::get('profile', 'api\auth\ProfileController@detail');
     //Auth token
     Route::post('auth/token', 'api\auth\AuthController@tokencek');
     /* 

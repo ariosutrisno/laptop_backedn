@@ -28,7 +28,6 @@ class CreatePermissionTables extends Migration
 
             $table->unique(['name', 'guard_name']);
         });
-
         Schema::create($tableNames['roles'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');       // For MySQL 8.0 use string('name', 125);

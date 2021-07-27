@@ -61,6 +61,7 @@ class DataLaptopRepository
     }
 
     public function update($request, $idx_datalaptop){
+        // dd($request->all());
         $image = $this->upload($request);
         $dataUpdate = DB::table('data_laptop')->where('idx_datalaptop','=',$idx_datalaptop)->update([
             'merek_laptop'=>$request->merek,

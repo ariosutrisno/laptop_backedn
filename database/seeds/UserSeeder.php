@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
+    
     /**
      * Run the database seeds.
      *
@@ -14,13 +15,13 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
-            'name'=>'ario sutrisno',
+            'name'=>'admin',
             'email'=>'sutrisnoario@gmail.com',
             'password'=>Hash::make('ariosutrisno')
         ]);
         $admin->assignRole('admin');
         $user = User::create([
-            'name'=>'ario',
+            'name'=>'user',
             'email'=>'ario@gmail.com',
             'password'=>Hash::make('ariosutrisno')
         ]);

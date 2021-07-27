@@ -21,8 +21,5 @@ class RoleSeeder extends Seeder
             'name'=>'user',
             'guard_name'=>'web'
         ]);
-
-        
-
     }
 }

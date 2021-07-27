@@ -30,7 +30,7 @@ Auth::routes();
 // Route::get('/print', 'Web\Input\DataLaptopPrintController@index')->name('print');
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['role:admin']], function () {
      // Dashboard
      Route::get('/dashboard', 'Web\DashboardController@dashboard')->name('dashboard');
      /* 
