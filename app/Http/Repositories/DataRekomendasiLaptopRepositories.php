@@ -19,14 +19,14 @@ class DataRekomendasiLaptopRepositories
     }
     public function createdata($request)
     {
+        // dd($request->all());
         $id_user = Auth::id();
-        DB::table('data_rekomendasi')->where('id_user','=',$id_user)->insert([
+        $data = DB::table('data_rekomendasi')->where('id_user','=',$id_user)->insert([
             'id_user'=>$id_user,
-            'merek_laptop' => $request->merk,
-            'type_laptop' => $request->tipe,
-            'harga_laptop' => $request->harga,
+            'merek_laptop' => $request->merek_laptop,
+            'harga_laptop' => $request->harga_laptop,
         ]);
-        
+        return $data;
     }
     public function dataView($idx_rekomendasi)
     {
@@ -43,11 +43,11 @@ class DataRekomendasiLaptopRepositories
     public function updateData($request,$idx_rekomendasi)
     {
         $id_user = Auth::id();
-        DB::table('data_rekomendasi')->where('id_user','=',$id_user)->where('idx_rekomendasi','=',$idx_rekomendasi)->update([
+        $data = DB::table('data_rekomendasi')->where('id_user','=',$id_user)->where('idx_rekomendasi','=',$idx_rekomendasi)->update([
             'merek_laptop' => $request->merk,
-            'type_laptop' => $request->tipe,
             'harga_laptop' => $request->harga,
         ]);
+        return $data;
     }
 
 

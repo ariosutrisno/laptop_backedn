@@ -49,8 +49,8 @@ class DataRekomenController extends ApiController
     public function saveRekomen(Request $request)
     {
         $save_data = $this->rekomendasi->createdata($request);
-        if ($save_data) {
-            return $this->sendResponse(0, "Berhasil",[]);
+        if ($save_data != '') {
+            return $this->sendResponse(0, "Berhasil",$request->all());
         } else { 
             return $this->sendError(2, 'Error');
         }
@@ -95,7 +95,7 @@ class DataRekomenController extends ApiController
     {
         $data_update = $this->rekomendasi->updateData($request,$idx_rekomend);
         if ($data_update) {
-            return $this->sendResponse(0, "Berhasil",$data_update);
+            return $this->sendResponse(0, "Berhasil",$data_update,$request->all());
         } else { 
             return $this->sendError(2, 'Error');
         }
