@@ -2,20 +2,32 @@
 
 namespace App\Http\Controllers\api\auth;
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class ProfileController extends Controller
+class ProfileController extends ApiController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    protected $userRepository;
+
+
+    public function __construct(UserRepository $userRepository)
+    {
+
+        $this->userRepository = $userRepository;
+    }
     public function index()
     {
-        //
+        // $data = DB::table('alternatif')->get();
+        // dd($data);
     }
 
     /**
@@ -85,11 +97,10 @@ class ProfileController extends Controller
     }
     public function details()
     {
-        $result = $this->userRepository->getDetail(Auth::user()->users_code);
-
+        // echo('saya bisa');
+        $result = $this->userRepository->getDetail(Auth::user()->id);
         if (!empty($result)) {
             $result = $this->sendResponse(0, 'Sukses', $result);
-
         } elseif ($result === false) {
             $result = $this->sendError(2, 4);
         } else {

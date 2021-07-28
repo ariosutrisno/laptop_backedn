@@ -5,11 +5,6 @@ namespace App\Http\Repositories;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\User as UserResource;
-use App\Http\Resources\Users;
-use Carbon\Carbon;
-
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class UserRepository
 {
@@ -20,20 +15,16 @@ class UserRepository
         $this->user = $user;
     }
 
-    public function getDetail($users_code)
+    public function getDetail($id)
     {
-        if (empty($users_code)) {
+        if (empty($id)) {
             return false;
         }
-
         $users = DB::table('users')->select('*')
-            ->where('users.id', '!=', 2)
-            ->where('users_status', 1)
-            ->where('users.users_code', $users_code)
+            ->where('users.id',$id )
             ->limit(1)
             ->first();
         $user = (collect($users)->count()) ? new UserResource($users) : false;
-
         return $user;
     }
 

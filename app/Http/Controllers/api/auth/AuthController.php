@@ -51,6 +51,7 @@ class AuthController extends ApiController
         unset($success['email_verified_at']);
         unset($success['created_at']);
         unset($success['updated_at']);
+        // $success->hasRole('user');
         return $this->sendResponse(0, "Login Berhasil", $success);
     }
 
