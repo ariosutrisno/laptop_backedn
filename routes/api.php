@@ -49,5 +49,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     Route::get('alternatif','api\Input\DataAlternatifController@getData');
     Route::get('utility', 'api\Input\DataAlternatifController@utility');
     Route::get('ranking', 'api\Input\DataRankingController@getAllData');
+    
+    /* ROUTE FILTER DATA */
+    Route::get('filter', 'api\Input\DataRankingController@datafilter');
+
 });
 Route::post('register', 'api\Register\RegisterController@registerAsUser');

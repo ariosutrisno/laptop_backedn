@@ -190,9 +190,17 @@ class DataPerhitunganRepository
         ]);
         // dd($request->all());
     }
-    function mobile_ranking()
+    function mobile_filter($request)
     {
-        // $data_ranking = DB::table('data_ranking')->get();
-        // return $data_ranking;
+        $filter = $request->filter;
+        $data = DB::table('data_alternatif')
+        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
+        ->select('data_alternatif.*','data_laptop.*')
+        ->where('merek_laptop','like',"%".$filter."%")
+        ->orWhere('ram', 'LIKE', '%' . $filter . '%')
+        ->orWhere('processor', 'LIKE', '%' . $filter . '%')
+        ->orWhere('harga', 'LIKE', '%' . $filter . '%')
+        ->get();
+        return $data;
     }
 }
