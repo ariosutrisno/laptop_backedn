@@ -64,6 +64,17 @@ class DataAlternatifRepositories
     public function nilaiutility($request)
     {
         $data = new DataAlternatifRepositories();
+        $filter = $request->filter;
+        $data->filter = DB::table('data_alternatif')
+        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
+        ->select('data_alternatif.*','data_laptop.*')
+        ->where('merek_laptop','like',"%".$filter."%")
+        ->orWhere('ram', 'LIKE', '%' . $filter . '%')
+        ->orWhere('processor', 'LIKE', '%' . $filter . '%')
+        ->orWhere('harga', 'LIKE', '%' . $filter . '%')
+        ->distinct()
+        ->get();
+
         $alternatif= DB::table('data_alternatif')
         ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
         ->select('data_alternatif.*','data_laptop.*')
@@ -98,16 +109,7 @@ class DataAlternatifRepositories
             $rank6= round(($alter->c6 - $data->min6) / ($data->max6 - $data->min6),3) * ($data->bobot6);
             $data->rank[] = (round(($rank1+$rank2+$rank3+$rank4+$rank5+$rank6),3));
         }
-        $filter = $request->filter;
-        $data->filter = DB::table('data_alternatif')
-        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
-        ->select('data_alternatif.*','data_laptop.*')
-        ->where('merek_laptop','like',"%".$filter."%")
-        ->orWhere('ram', 'LIKE', '%' . $filter . '%')
-        ->orWhere('processor', 'LIKE', '%' . $filter . '%')
-        ->orWhere('harga', 'LIKE', '%' . $filter . '%')
-        ->distinct()
-        ->get();
+        
         return $data;
     }
     /* 
