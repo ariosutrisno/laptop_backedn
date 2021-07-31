@@ -128,7 +128,7 @@ class DataPerhitunganRepository
     *RANKING
     *
     */
-    function rangking()
+    function rangking($request)
     {
         // $perhitungan = DB::table('data_alternatif')->get();
         // $data2 = DB::table('data_kriteria')->sum('bobot');
@@ -173,9 +173,15 @@ class DataPerhitunganRepository
         //     $r = array($perhitungan->rank);
             
         // }
-        
+        $filter = $request->filter;
         $data_ranking = DB::table('data_ranking')->join('data_alternatif','data_alternatif.idx_alternatif','=','data_ranking.alternatif')
-        ->select('data_alternatif.alternatif','data_alternatif.datalaptop','hasil_akhir')
+        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_ranking.data_laptop')
+        ->select('data_alternatif.*','data_laptop.*','data_ranking.*')
+        ->where('merek_laptop','like',"%".$filter."%")
+        ->orWhere('ram', 'LIKE', '%' . $filter . '%')
+        ->orWhere('processor', 'LIKE', '%' . $filter . '%')
+        ->orWhere('harga', 'LIKE', '%' . $filter . '%')
+        ->distinct()
         ->orderBy('hasil_akhir','desc')
         ->get();
         return $data_ranking;

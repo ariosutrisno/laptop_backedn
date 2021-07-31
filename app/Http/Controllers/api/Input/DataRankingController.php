@@ -20,9 +20,9 @@ class DataRankingController extends ApiController
         $this->dataranking = $dataranking;
     }
 
-    public function getAllData()
+    public function getAllData(Request $request)
     {
-        $check_ranking = $this->dataranking->rangking();
+        $check_ranking = $this->dataranking->rangking($request);
         if (collect($check_ranking)->count()) {
             return $this->sendResponse(0, 19, $check_ranking);
         } else {
