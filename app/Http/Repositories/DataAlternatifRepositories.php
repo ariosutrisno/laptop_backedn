@@ -74,10 +74,15 @@ class DataAlternatifRepositories
         ->orWhere('harga', 'LIKE', '%' . $filter . '%')
         ->distinct()
         ->get();
-
+        
         $alternatif= DB::table('data_alternatif')
         ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
         ->select('data_alternatif.*','data_laptop.*')
+        ->where('merek_laptop','like',"%".$filter."%")
+        ->orWhere('ram', 'LIKE', '%' . $filter . '%')
+        ->orWhere('processor', 'LIKE', '%' . $filter . '%')
+        ->orWhere('harga', 'LIKE', '%' . $filter . '%')
+        ->distinct()
         ->get();
         $bobot= DB::table('data_kriteria')->get();
         $data->min1 = $alternatif->min('c1');
