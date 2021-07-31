@@ -173,6 +173,7 @@ class DataPerhitunganRepository
         //     $r = array($perhitungan->rank);
             
         // }
+        
         $data_ranking = DB::table('data_ranking')->join('data_alternatif','data_alternatif.idx_alternatif','=','data_ranking.alternatif')
         ->select('data_alternatif.alternatif','data_alternatif.datalaptop','hasil_akhir')
         ->orderBy('hasil_akhir','desc')
@@ -192,7 +193,7 @@ class DataPerhitunganRepository
     }
     function mobile_filter($request)
     {
-        $filter = $request->filter;
+        
         $data = new DataPerhitunganRepository();
         $data->alternatif = $alternatif= DB::table('data_alternatif')->get();
         $bobot= DB::table('data_kriteria')->get();
@@ -215,6 +216,8 @@ class DataPerhitunganRepository
         $data->bobot4 = round(($bobot[3]->bobot / $count),3);
         $data->bobot5 = round(($bobot[4]->bobot / $count),3);
         $data->bobot6 = round(($bobot[5]->bobot / $count),3);
+
+        $filter = $request->filter;
         $data->filter = DB::table('data_alternatif')
         ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
         ->select('data_alternatif.*','data_laptop.*')
@@ -222,8 +225,10 @@ class DataPerhitunganRepository
         ->orWhere('ram', 'LIKE', '%' . $filter . '%')
         ->orWhere('processor', 'LIKE', '%' . $filter . '%')
         ->orWhere('harga', 'LIKE', '%' . $filter . '%')
+        ->distinct()
         ->get();
-        
+
+        $data->ram = DB::table('tbl_ram')->get();
         foreach($alternatif as $alter){
             $rank1= ($data->bobot1) * round(($alter->c1 - $data->min1) / ($data->max1 - $data->min1),3);
             $rank2= round(($alter->c2 - $data->min2) / ($data->max2 - $data->min2),3) * ($data->bobot2);
