@@ -128,51 +128,16 @@ class DataPerhitunganRepository
     *RANKING
     *
     */
+    function ranking_web(){
+        $data_ranking = DB::table('data_ranking')->join('data_alternatif','data_alternatif.idx_alternatif','=','data_ranking.alternatif')
+        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_ranking.data_laptop')
+        ->select('data_alternatif.*','data_laptop.*','data_ranking.*')
+        ->get();
+        return $data_ranking;
+    }
     function rangking($request)
     {
-        // $perhitungan = DB::table('data_alternatif')->get();
-        // $data2 = DB::table('data_kriteria')->sum('bobot');
-        // $normalisasi = DB::table('data_kriteria')->get();
-        // /* 
-        // *NORMALISASI BOBOT
-        // */
-        // $hasil_bobot1 = $normalisasi[0]->bobot / $data2;
-        // $hasil_bobot2 = $normalisasi[1]->bobot / $data2;
-        // $hasil_bobot3 = $normalisasi[2]->bobot / $data2;
-        // $hasil_bobot4 = $normalisasi[3]->bobot / $data2;
-        // $hasil_bobot5 = $normalisasi[4]->bobot / $data2;
-        // $hasil_bobot6 = $normalisasi[5]->bobot / $data2;
-        // $dataMax1 = $perhitungan->max('c1');
-        // $dataMin1 = $perhitungan->min('c1');
-        // $dataMax2 = $perhitungan->max('c2');
-        // $dataMin2 = $perhitungan->min('c2');
-        // $dataMax3 = $perhitungan->max('c3');
-        // $dataMin3 = $perhitungan->min('c3');
-        // $dataMax4 = $perhitungan->max('c4');
-        // $dataMin4 = $perhitungan->min('c4');
-        // $dataMax5 = $perhitungan->max('c5');
-        // $dataMin5 = $perhitungan->min('c5');
-        // $dataMax6 = $perhitungan->max('c6');
-        // $dataMin6 = $perhitungan->min('c6');
-        // foreach ($perhitungan as $datas) {
-        //     # code...
-        //     $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
-        //     $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
-        //     $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
-        //     $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
-        //     $datautility5 = (($datas->c5 - $dataMin5) / ($dataMax5 - $dataMin5));
-        //     $datautility6 = (($datas->c6 - $dataMin6) / ($dataMax6 - $dataMin6));
-
-        //     $hitungkali1 = number_format(($hasil_bobot1*$datautility1),4);
-        //     $hitungkali2 = number_format(($hasil_bobot2*$datautility2),4);
-        //     $hitungkali3 = number_format(($hasil_bobot3*$datautility3),4);
-        //     $hitungkali4 = number_format(($hasil_bobot4*$datautility4),4);
-        //     $hitungkali5 = number_format(($hasil_bobot5*$datautility5),4);
-        //     $hitungkali6 = number_format(($hasil_bobot6*$datautility6),4);
-        //     $perhitungan->rank = ($hitungkali1 + $hitungkali2 + $hitungkali3 + $hitungkali4 + $hitungkali5 + $hitungkali6 );
-        //     $r = array($perhitungan->rank);
-            
-        // }
+        
         $filter = $request->filter;
         $data_ranking = DB::table('data_ranking')->join('data_alternatif','data_alternatif.idx_alternatif','=','data_ranking.alternatif')
         ->join('data_laptop','data_laptop.idx_datalaptop','=','data_ranking.data_laptop')
@@ -195,7 +160,6 @@ class DataPerhitunganRepository
             'alternatif'=>$data_req,
             'hasil_akhir'=>$data_ranking,
         ]);
-        // dd($request->all());
     }
     function mobile_filter($request)
     {
