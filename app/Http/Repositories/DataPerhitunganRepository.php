@@ -132,6 +132,7 @@ class DataPerhitunganRepository
         $data_ranking = DB::table('data_ranking')->join('data_alternatif','data_alternatif.idx_alternatif','=','data_ranking.alternatif')
         ->join('data_laptop','data_laptop.idx_datalaptop','=','data_ranking.data_laptop')
         ->select('data_alternatif.*','data_laptop.*','data_ranking.*')
+        ->orderBy('hasil_akhir','desc')
         ->get();
         return $data_ranking;
     }
