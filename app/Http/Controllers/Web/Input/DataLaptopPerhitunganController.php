@@ -21,7 +21,7 @@ class DataLaptopPerhitunganController extends Controller
     public function index()
     {
         $data_tampil = $this->perhitungan->hasilperhitungan();
-        $data_ranking = $this->perhitungan->rangking_web();
+        $data_ranking = $this->perhitungan->ranking_web();
         return view('Web.DataPerhitungan.ranking',compact('data_ranking'));
     }
     public function getUtility()
