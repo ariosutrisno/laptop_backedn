@@ -29,9 +29,9 @@ class DataAlternatifController extends ApiController
             return $this->sendResponse(0, 19, []);
         }
     }
-    public function utility(Request $request)
+    public function utility()
     {
-        $utility = $this->alternatif->nilaiutility($request);
+        $utility = $this->alternatif->utility_nilai();
         if (collect($utility)->count()) {
             return $this->sendResponse(0, 19,$utility);
         } else {

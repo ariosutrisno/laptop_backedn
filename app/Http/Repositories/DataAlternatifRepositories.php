@@ -112,6 +112,28 @@ class DataAlternatifRepositories
         
         return $data;
     }
+    public function utility_nilai()
+    {
+        $data = new DataAlternatifRepositories();
+        $data->alternatif = $alternatif= DB::table('data_alternatif')
+        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
+        ->select('data_alternatif.*','data_laptop.*')
+        ->get();
+        $bobot= DB::table('data_kriteria')->get();
+        $data->min1 = $alternatif->min('c1');
+        $data->max1 = $alternatif->max('c1');
+        $data->min2 = $alternatif->min('c2');
+        $data->max2 = $alternatif->max('c2');
+        $data->min3 = $alternatif->min('c3');
+        $data->max3 = $alternatif->max('c3');
+        $data->min4 = $alternatif->min('c4');
+        $data->max4 = $alternatif->max('c4');
+        $data->min5 = $alternatif->min('c5');
+        $data->max5 = $alternatif->max('c5');
+        $data->min6 = $alternatif->min('c6');
+        $data->max6 = $alternatif->max('c6');
+        return $data;
+    }
     /* 
     *
     *FUNGSI DATA SUB KRITERIA
