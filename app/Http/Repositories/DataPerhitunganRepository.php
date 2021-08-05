@@ -211,5 +211,40 @@ class DataPerhitunganRepository
         }
         return $data;
     }
-    
+    /* MOBILE API */
+    function allrank()
+    {
+        $data = new DataPerhitunganRepository();
+        $data->alternatif = $alternatif= DB::table('data_alternatif')->get();
+        $bobot= DB::table('data_kriteria')->get();
+        $data->min1 = $alternatif->min('c1');
+        $data->max1 = $alternatif->max('c1');
+        $data->min2 = $alternatif->min('c2');
+        $data->max2 = $alternatif->max('c2');
+        $data->min3 = $alternatif->min('c3');
+        $data->max3 = $alternatif->max('c3');
+        $data->min4 = $alternatif->min('c4');
+        $data->max4 = $alternatif->max('c4');
+        $data->min5 = $alternatif->min('c5');
+        $data->max5 = $alternatif->max('c5');
+        $data->min6 = $alternatif->min('c6');
+        $data->max6 = $alternatif->max('c6');
+        $data->sum = $count = $bobot->sum('bobot');
+        $data->bobot1 = round(($bobot[0]->bobot / $count),3);
+        $data->bobot2 = round(($bobot[1]->bobot / $count),3);
+        $data->bobot3 = round(($bobot[2]->bobot / $count),3);
+        $data->bobot4 = round(($bobot[3]->bobot / $count),3);
+        $data->bobot5 = round(($bobot[4]->bobot / $count),3);
+        $data->bobot6 = round(($bobot[5]->bobot / $count),3);
+        foreach($alternatif as $alter){
+            $rank1= ($data->bobot1) * round(($alter->c1 - $data->min1) / ($data->max1 - $data->min1),3);
+            $rank2= round(($alter->c2 - $data->min2) / ($data->max2 - $data->min2),3) * ($data->bobot2);
+            $rank3= round(($alter->c3 - $data->min3) / ($data->max3 - $data->min3),3) * ($data->bobot3);
+            $rank4= round(($alter->c4 - $data->min4) / ($data->max4 - $data->min4),3) * ($data->bobot4);
+            $rank5= round(($alter->c5 - $data->min5) / ($data->max5 - $data->min5),3) * ($data->bobot5);
+            $rank6= round(($alter->c6 - $data->min6) / ($data->max6 - $data->min6),3) * ($data->bobot6);
+            $data->rank[] = (round(($rank1+$rank2+$rank3+$rank4+$rank5+$rank6),3));
+        }
+        return $data;
+    }
 }
