@@ -33,15 +33,15 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Data Kriteria</h1>
                     <div class="float-right">
-                        <div class="btn-group mb-3" role="group" aria-label="Basic mixed styles example">
+                        {{-- <div class="btn-group mb-3" role="group" aria-label="Basic mixed styles example">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="float-right mr-2">
+                    {{-- <div class="float-right mr-2">
                         <div class="btn-group mb-3" role="group" aria-label="Basic mixed styles example">
                             <a href="{{ route('datanormalisasi') }}" class="btn btn-primary" >Hasil Normalisasi</a>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="container mt-3">
                         <table class="table table-bordered text-center table-sm" id="dtHorizontalVerticalExample">
                             <thead class="table-warning">
@@ -66,7 +66,7 @@
                                         <td>{{ $item->deskripsi }}</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href=""  data-toggle="modal" data-id="{{ $item->idx_kriteria }}" data-target="#modaledit" class="btn btn-warning btn-edit">Edit</a>
+                                                {{-- <a href=""  data-toggle="modal" data-id="{{ $item->idx_kriteria }}" data-target="#modaledit" class="btn btn-warning btn-edit">Edit</a> --}}
                                                 <a href="{{ url('/dataKriteria/ ' . $item->idx_kriteria . '/delete ') }}" class="btn btn-danger">Delete</a>
                                             </div>
                                         </td>

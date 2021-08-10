@@ -39,7 +39,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     *
     */
     Route::get('datalaptop', 'api\Input\DataLaptopController@getAll');
-    Route::get('datalaptop/{idx_datalaptop}/view', 'api\Input\DataLaptopController@viewdata');
+    Route::get('datalaptop/view/{idx_datalaptop}', 'api\Input\DataLaptopController@viewdata');
 
     //Data Kriteria && Normalisasi
     Route::get('datakriteria', 'api\Input\DataKriteriaController@getAll');
