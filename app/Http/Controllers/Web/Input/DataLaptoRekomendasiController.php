@@ -22,7 +22,7 @@ class DataLaptoRekomendasiController extends Controller
 
     public function getRekomen()
     {
-        $getdata =$this->datarekomen->listData();
+        $getdata =$this->datarekomen->listDataWeb();
         return view('Web.DataRekomendasi.index',compact('getdata'));
     }
 

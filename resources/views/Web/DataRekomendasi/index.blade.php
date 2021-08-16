@@ -42,6 +42,7 @@
                         <thead class="table-warning">
                             <tr>
                                 <th>NO</th>
+                                <th>Name User</th>
                                 <th>Merk Laptop</th>
                                 <th>Harga</th>
                             </tr>
@@ -52,6 +53,7 @@
                                 <?php $no++; ?>
                                     <tr>
                                         <td>{{ $no }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>{{ $item->merek_laptop }}</td>
                                         <td>{{ $item->harga_laptop }}</td>
                                     </tr>

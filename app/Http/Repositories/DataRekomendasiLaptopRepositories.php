@@ -17,6 +17,15 @@ class DataRekomendasiLaptopRepositories
         $data = DB::table('data_rekomendasi')->where('id_user','=',$id_user)->get();
         return $data;
     }
+    public function listDataWeb()
+    {
+        $data = new DataRekomendasiLaptopRepositories();
+        $data = DB::table('data_rekomendasi')
+        ->join('users','users.id','=','data_rekomendasi.id_user')
+        ->select('data_rekomendasi.*','users.*')
+        ->get();
+        return $data;
+    }
     public function createdata($request)
     {
         // dd($request->all());
