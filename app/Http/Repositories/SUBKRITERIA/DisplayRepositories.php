@@ -19,14 +19,14 @@ Class DisplayRepositories
     }
     public function buatdata($request){
         DB::table('tbl_display')->insert([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_display'=>$request->nilai_hasil,
+            'display'=>$request->keterangan,
         ]);
     }
     public function updatedata($request,$idx_display){
         DB::table('tbl_display')->where('idx_display','=',$idx_display)->update([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_display'=>$request->nilai_hasil,
+            'display'=>$request->keterangan,
         ]);
     }
     public function viewdata($idx_display){

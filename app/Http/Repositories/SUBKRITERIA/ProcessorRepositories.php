@@ -19,14 +19,14 @@ Class ProcessorRepositories
     }
     public function buatdata($request){
         DB::table('tbl_processor')->insert([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_processor'=>$request->nilai_hasil,
+            'processor'=>$request->keterangan,
         ]);
     }
     public function updatedata($request,$idx_processor){
         DB::table('tbl_processor')->where('idx_processor','=',$idx_processor)->update([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_processor'=>$request->nilai_hasil,
+            'processor'=>$request->keterangan,
         ]);
     }
     public function viewdata($idx_processor){

@@ -1,5 +1,5 @@
 @extends('Web.LayoutPage.app')
-@section('title','All Data Kriteria')
+@section('title','Kriteria')
 @section('content')
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -66,7 +66,7 @@
                                         <td>{{ $item->deskripsi }}</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                {{-- <a href=""  data-toggle="modal" data-id="{{ $item->idx_kriteria }}" data-target="#modaledit" class="btn btn-warning btn-edit">Edit</a> --}}
+                                                <a href=""  data-toggle="modal" data-id="{{ $item->idx_kriteria }}" data-target="#modaledit" class="btn btn-warning btn-edit">Edit</a>
                                                 <a href="{{ url('/dataKriteria/ ' . $item->idx_kriteria . '/delete ') }}" class="btn btn-danger">Delete</a>
                                             </div>
                                         </td>

@@ -26,9 +26,6 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'Web\LandingController@index')->name('home');
 Route::get('/access', 'Web\LandingController@access')->name('homeAcces');
 Auth::routes();
-// // hasil print Metode smart untuk pilihan laptop
-// Route::get('/print', 'Web\Input\DataLaptopPrintController@index')->name('print');
-
 
 Route::group(['middleware' => ['role:admin']], function () {
      // Dashboard
@@ -51,10 +48,7 @@ Route::group(['middleware' => ['role:admin']], function () {
      * 
      */
      Route::get('/datarekomendasi', 'Web\Input\DataLaptoRekomendasiController@getRekomen')->name('datarekomendasi');
-     Route::post('/datarekomendasi', 'Web\Input\DataLaptoRekomendasiController@PostData')->name('DataPostRekomen');
-     Route::get('/datarekomendasi/{idx_rekomen}/edit', 'Web\Input\DataLaptoRekomendasiController@editRekomenData')->name('EditRekomen');
-     Route::post('/datarekomendasi/{idx_rekomen}/update', 'Web\Input\DataLaptoRekomendasiController@editRekomenUpdate')->name('updateRekomen');
-     Route::get('/datarekomendasi/{idx_rekomen}/delete', 'Web\Input\DataLaptoRekomendasiController@deleteRekomen')->name('deletRekomen');
+     
      /* 
      *
      *INPUT DATA KRITERIA
@@ -65,12 +59,7 @@ Route::group(['middleware' => ['role:admin']], function () {
      Route::post('/dataKriteria', 'Web\Input\DataLaptopKriteriaController@PostData')->name('PostDataKritera');
      Route::post('/dataKriteria/{idx_kriteria}/update', 'Web\Input\DataLaptopKriteriaController@updateData')->name('updateData');
      Route::get('/dataKriteria/{idx_kriteria}/delete', 'Web\Input\DataLaptopKriteriaController@deleteData')->name('deleteData');
-     /* 
-     *
-     *NORMALISASI KRITERIA 
-     * 
-     */
-     Route::get('/normalisasi', 'Web\Input\DataLaptopNormalisasiController@getNormalisasi')->name('datanormalisasi');
+     
      /* 
      *
      *DATA ALTERNATIF
@@ -81,29 +70,12 @@ Route::group(['middleware' => ['role:admin']], function () {
      Route::post('/dataAlternatif', 'Web\Input\DataLaptopAlternatifController@PostDataAlternatif')->name('PostDataAlternatif');
      Route::post('/dataAlternatif/{idx_alternatif}/update', 'Web\Input\DataLaptopAlternatifController@updateDataAlternatif')->name('updateDataAlternatif');
      Route::get('/dataAlternatif/{idx_alternatif}/delete', 'Web\Input\DataLaptopAlternatifController@deleteDataAlternatif')->name('deleteDataAlternatif');
-     
-     //Profile
-     Route::get('/profile', 'Web\Profile\ProfileController@getProfile')->name('GetProfile');
-     Route::post('/profile/{id}/update', 'Web\Profile\ProfileController@updateProfile')->name('updateProfile');
 
-     /* 
-     *
-     * 
-     * NILAI INPUT DATA LAPTOP
-     */
-     Route::get('/inputdata', 'Web\Input\InputNilaiDataLaptopController@getInput')->name('dataInputLaptop');
-     /* 
-     *
-     * 
-     * DATA  NILAI LAPTOP
-     */
-     Route::get('/datanilai', 'Web\Input\NilaiDataLaptopController@getNilaiData')->name('dataNilai');
      /* 
      *
      * 
      * DATA  NILAI UTILTY LAPTOP && PERHITUNGAN && HASIL RANGKING
      */
-     Route::get('/nilaiUtility', 'Web\Input\DataLaptopPerhitunganController@getUtility')->name('dataUltility');
      Route::get('/perhitungan', 'Web\Input\DataLaptopPerhitunganController@perhitungan')->name('perhitungan');
      Route::post('/perhitungan', 'Web\Input\DataLaptopPerhitunganController@posthitung')->name('posthitung');
      Route::get('/ranking', 'Web\Input\DataLaptopPerhitunganController@index')->name('getRangking');

@@ -19,14 +19,14 @@ class StorageRepositories
     }
     public function buatdata($request){
         DB::table('tbl_storage')->insert([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_storage'=>$request->nilai_hasil,
+            'storage'=>$request->keterangan,
         ]);
     }
     public function updatedata($request,$idx_storage){
         DB::table('tbl_storage')->where('idx_storage','=',$idx_storage)->update([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_storage'=>$request->nilai_hasil,
+            'storage'=>$request->keterangan,
         ]);
     }
     public function viewdata($idx_storage){

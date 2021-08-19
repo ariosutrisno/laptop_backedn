@@ -1,5 +1,5 @@
 @extends('Web.LayoutPage.app')
-@section('title','All Data Alternatif')
+@section('title','Alternatif')
 @section('content')
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -35,39 +35,68 @@
                     <div class="float-right">
                         <div class="btn-group mb-3" role="group" aria-label="Basic mixed styles example">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
-                            <a href="{{ route('dataUltility') }}" class="btn btn-success" >Tabel Nilai Utility</a>
                         </div>
                     </div>
                     <div class="container mt-3">
 
-                        <table class="table table-bordered text-center" id="dtHorizontalVerticalExample">
+                        <table class="table table-bordered text-center" id="dtHorizontalVerticalExample" width='100%'>
                             <thead class="table-warning">
                                 <tr>
-                                    <th>NO</th>
                                     <th>Alternatif</th>
                                     <th>Merk Laptop</th>
-                                    <th>C1</th>
-                                    <th>C2</th>
-                                    <th>C3</th>
-                                    <th>C4</th>
-                                    <th>C5</th>
-                                    <th>C6</th>
+                                    <th>RAM</th>
+                                    <th>PROCESSOR</th>
+                                    <th>DISPLAY</th>
+                                    <th>STORAGE</th>
+                                    <th>VGA CARD</th>
+                                    <th>HARGA</th>
+                                    <th>OPSI</th>
                                 </tr>
                             </thead>
                                 <tbody>
-                                    <?php $no = 0; ?>
                                     @foreach ($data as $item)
-                                        <?php $no++ ?>
                                         <tr>
-                                            <td>{{ $no }}</td>
                                             <td>{{ $item->alternatif }}</td>
-                                            <td>{{ $item->datalaptop }}</td>
-                                            <td>{{ $item->c1 }}</td>
-                                            <td>{{ $item->c2 }}</td>
-                                            <td>{{ $item->c3 }}</td>
-                                            <td>{{ $item->c4 }}</td>
-                                            <td>{{ $item->c5 }}</td>
-                                            <td>{{ $item->c6 }}</td>
+                                            <td>{{ $item->merek_laptop }}</td>
+                                            <td>{{ $item->ram }}</td>
+                                            <td>{{ $item->processor }}</td>
+                                            <td>{{ $item->display }}</td>
+                                            <td>{{ $item->storage }}</td>
+                                            <td>{{ $item->vgacard }}</td>
+                                            <td>{{ $item->harga }}</td>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <a href=""  data-toggle="modal" data-id="" data-target="#modaledit" class="btn btn-warning btn-edit">Edit</a>
+                                                    <a href="" class="btn btn-danger">Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                </tbody>
+                        </table>
+                        <br>
+                        <table class="table table-bordered text-center" id="dtHorizontalVerticalExample4">
+                            <thead class="table-warning">
+                                <tr>
+                                    <th>Alternatif</th>
+                                    <th>RAM</th>
+                                    <th>PROCESSOR</th>
+                                    <th>DISPLAY</th>
+                                    <th>STORAGE</th>
+                                    <th>VGA CARD</th>
+                                    <th>HARGA</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    @foreach ($data as $item)
+                                        <tr>
+                                            <td>{{ $item->alternatif }}</td>
+                                            <td>{{ $item->nilai_ram }}</td>
+                                            <td>{{ $item->nilai_processor }}</td>
+                                            <td>{{ $item->nilai_display }}</td>
+                                            <td>{{ $item->nilai_storage }}</td>
+                                            <td>{{ $item->nilai_vga }}</td>
+                                            <td>{{ $item->nilai_harga }}</td>
                                         </tr>
                                         @endforeach
                                 </tbody>
@@ -79,23 +108,32 @@
                                     <th colspan="7" class="text-center bg-success" style="color: black">NILAI MIN && MAX</th>
                                 </thead>
                                 <tbody>
+                                <tr>
+                                    <th></th>
+                                    <th>RAM</th>
+                                    <th>PROCESSOR</th>
+                                    <th>DISPLAY</th>
+                                    <th>STORAGE</th>
+                                    <th>VGA CARD</th>
+                                    <th>HARGA</th>
+                                </tr>
                                 <tr style="color: black; background-color:rgba(248, 248, 25, 0.55);border:2px solid black">
                                     <th scope="col">MAX</th>
-                                    <th scope="col">{{ $data->max('c1') }}</th>
-                                    <th scope="col">{{ $data->max('c2') }}</th>
-                                    <th scope="col">{{ $data->max('c3') }}</th>
-                                    <th scope="col">{{ $data->max('c4') }}</th>
-                                    <th scope="col">{{ $data->max('c5') }}</th>
-                                    <th scope="col">{{ $data->max('c6') }}</th>
+                                    <th scope="col">{{ $data->max('nilai_ram') }}</th>
+                                    <th scope="col">{{ $data->max('nilai_processor') }}</th>
+                                    <th scope="col">{{ $data->max('nilai_display') }}</th>
+                                    <th scope="col">{{ $data->max('nilai_storage') }}</th>
+                                    <th scope="col">{{ $data->max('nilai_vga') }}</th>
+                                    <th scope="col">{{ $data->max('nilai_harga') }}</th>
                                 </tr>
                                 <tr style="color: black;background-color:rgba(237, 125, 9, 0.81);border:2px solid black">
                                     <th scope="col">MIN</th>
-                                    <th scope="col">{{ $data->min('c1') }}</th>
-                                    <th scope="col">{{ $data->min('c2') }}</th>
-                                    <th scope="col">{{ $data->min('c3') }}</th>
-                                    <th scope="col">{{ $data->min('c4') }}</th>
-                                    <th scope="col">{{ $data->min('c5') }}</th>
-                                    <th scope="col">{{ $data->min('c6') }}</th>
+                                    <th scope="col">{{ $data->min('nilai_ram') }}</th>
+                                    <th scope="col">{{ $data->min('nilai_processor') }}</th>
+                                    <th scope="col">{{ $data->min('nilai_display') }}</th>
+                                    <th scope="col">{{ $data->min('nilai_storage') }}</th>
+                                    <th scope="col">{{ $data->min('nilai_vga') }}</th>
+                                    <th scope="col">{{ $data->min('nilai_harga') }}</th>
                                 </tr>
                                 </tbody>
                             </table>
@@ -105,29 +143,26 @@
                         <table class="table table-bordered text-center" id="dtHorizontalVerticalExample1">
                             <thead class="table-warning">
                                 <tr>
-                                    <th>NO</th>
                                     <th>Alternatif</th>
-                                    <th>C1</th>
-                                    <th>C2</th>
-                                    <th>C3</th>
-                                    <th>C4</th>
-                                    <th>C5</th>
-                                    <th>C6</th>
+                                    <th>RAM</th>
+                                    <th>PROCESSOR</th>
+                                    <th>DISPLAY</th>
+                                    <th>STORAGE</th>
+                                    <th>VGA CARD</th>
+                                    <th>HARGA</th>
                                 </tr>
                             </thead>
                                 <tbody>
-                                    <?php $no = 0; ?>
+                                    
                                     @foreach ($data as $item)
-                                        <?php $no++ ?>
                                         <tr>
-                                            <td>{{ $no }}</td>
                                             <td>{{ $item->alternatif }}</td>
-                                            <td>{{ round((($item->c1 - $data->min('c1')) / ($data->max('c1')-$data->min('c1'))),3) }}</td>
-                                            <td>{{ round((($item->c2 - $data->min('c2')) / ($data->max('c2')-$data->min('c2'))),3) }}</td>
-                                            <td>{{ round((($item->c3 - $data->min('c3')) / ($data->max('c3')-$data->min('c3'))),3) }}</td>
-                                            <td>{{ round((($item->c4 - $data->min('c4')) / ($data->max('c4')-$data->min('c4'))),3) }}</td>
-                                            <td>{{ round((($item->c5 - $data->min('c5')) / ($data->max('c5')-$data->min('c5'))),3) }}</td>
-                                            <td>{{ round((($item->c6 - $data->min('c6')) / ($data->max('c6')-$data->min('c6'))),3) }}</td>
+                                            <td>{{ round((($item->nilai_ram - $data->min('nilai_ram')) / ($data->max('nilai_ram')-$data->min('nilai_ram'))),3) }}</td>
+                                            <td>{{ round((($item->nilai_processor - $data->min('nilai_processor')) / ($data->max('nilai_processor')-$data->min('nilai_processor'))),3) }}</td>
+                                            <td>{{ round((($item->nilai_display - $data->min('nilai_display')) / ($data->max('nilai_display')-$data->min('nilai_display'))),3) }}</td>
+                                            <td>{{ round((($item->nilai_storage - $data->min('nilai_storage')) / ($data->max('nilai_storage')-$data->min('nilai_storage'))),3) }}</td>
+                                            <td>{{ round((($item->nilai_vga - $data->min('nilai_vga')) / ($data->max('nilai_vga')-$data->min('nilai_vga'))),3) }}</td>
+                                            <td>{{ round((($item->nilai_harga - $data->min('nilai_harga')) / ($data->max('nilai_harga')-$data->min('nilai_harga'))),3) }}</td>
                                             
                                         </tr>
                                         @endforeach
@@ -189,6 +224,10 @@
             });
         $(document).ready(function () {
             $('#dtHorizontalVerticalExample1').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+            });
+        $(document).ready(function () {
+            $('#dtHorizontalVerticalExample4').DataTable();
             $('.dataTables_length').addClass('bs-select');
             });
 </script>

@@ -93,7 +93,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    @include('Web.DataRekomendasi.create')
+                    {{-- @include('Web.DataRekomendasi.create') --}}
                 </div>
                 
             </div>

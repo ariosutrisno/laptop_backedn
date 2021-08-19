@@ -48,80 +48,48 @@ class DataPerhitunganRepository
      */
     function hasilperhitungan()
     {
-        $perhitungan = new DataPerhitunganRepository;
-        $perhitungan = DB::table('data_alternatif')->get();
-        $data2 = DB::table('data_kriteria')->sum('bobot');
-        $normalisasi_bobot_1 = DB::table('data_kriteria')->select('bobot')
-        ->where('idx_kriteria','=',2)
-        ->value('bobot');
-        $normalisasi_bobot_2 = DB::table('data_kriteria')->select('bobot')
-        ->where('idx_kriteria','=',3)
-        ->value('bobot');
-        $normalisasi_bobot_3 = DB::table('data_kriteria')->select('bobot')
-        ->where('idx_kriteria','=',4)
-        ->value('bobot');
-        $normalisasi_bobot_4 = DB::table('data_kriteria')->select('bobot')
-        ->where('idx_kriteria','=',5)
-        ->value('bobot');
-        $normalisasi_bobot_5 = DB::table('data_kriteria')->select('bobot')
-        ->where('idx_kriteria','=',6)
-        ->value('bobot');
-        $normalisasi_bobot_6 = DB::table('data_kriteria')->select('bobot')
-        ->where('idx_kriteria','=',8)
-        ->value('bobot');
-        /* 
-        *NORMALISASI BOBOT
-        */
-        $hasil_bobot1 = $normalisasi_bobot_1 / $data2;
-        $hasil_bobot2 = $normalisasi_bobot_2 / $data2;
-        $hasil_bobot3 = $normalisasi_bobot_3 / $data2;
-        $hasil_bobot4 = $normalisasi_bobot_4 / $data2;
-        $hasil_bobot5 = $normalisasi_bobot_5 / $data2;
-        $hasil_bobot6 = $normalisasi_bobot_6 / $data2;
-        $dataMax1 = $perhitungan->max('c1');
-        $dataMin1 = $perhitungan->min('c1');
-        $dataMax2 = $perhitungan->max('c2');
-        $dataMin2 = $perhitungan->min('c2');
-        $dataMax3 = $perhitungan->max('c3');
-        $dataMin3 = $perhitungan->min('c3');
-        $dataMax4 = $perhitungan->max('c4');
-        $dataMin4 = $perhitungan->min('c4');
-        $dataMax5 = $perhitungan->max('c5');
-        $dataMin5 = $perhitungan->min('c5');
-        $dataMax6 = $perhitungan->max('c6');
-        $dataMin6 = $perhitungan->min('c6');
-        foreach ($perhitungan as $datas) {
+        $data = new DataPerhitunganRepository;
+        $alternatif = DB::table('data_alternatif')
+        ->join('tbl_ram','tbl_ram.idx_ram','=','data_alternatif.idx_ram')
+        ->join('tbl_processor','tbl_processor.idx_processor','=','data_alternatif.idx_processor')
+        ->join('tbl_storage','tbl_storage.idx_storage','=','data_alternatif.idx_storage')
+        ->join('tbl_display','tbl_display.idx_display','=','data_alternatif.idx_display')
+        ->join('tbl_vgacard','tbl_vgacard.idx_vga','=','data_alternatif.idx_vga_card')
+        ->join('tbl_harga','tbl_harga.idx_harga','=','data_alternatif.idx_harga')
+        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
+        ->select('tbl_ram.*','tbl_storage.*','tbl_display.*','tbl_vgacard.*','tbl_harga.*','tbl_processor.*','data_alternatif.*','data_laptop.*')
+        ->get();
+        $dataMax1 = $alternatif->max('nilai_ram');
+        $dataMin1 = $alternatif->min('nilai_ram');
+        $dataMax2 = $alternatif->max('nilai_processor');
+        $dataMin2 = $alternatif->min('nilai_processor');
+        $dataMax3 = $alternatif->max('nilai_display');
+        $dataMin3 = $alternatif->min('nilai_display');
+        $dataMax4 = $alternatif->max('nilai_storage');
+        $dataMin4 = $alternatif->min('nilai_storage');
+        $dataMax5 = $alternatif->max('nilai_vga');
+        $dataMin5 = $alternatif->min('nilai_vga');
+        $dataMax6 = $alternatif->max('nilai_harga');
+        $dataMin6 = $alternatif->min('nilai_harga');
+        $kriteria = DB::table('data_kriteria')->get();
+        $sum = DB::table('data_kriteria')->sum('bobot');
+        $kriteria['0']->bobot / $sum;
+        $kriteria['1']->bobot / $sum;
+        $kriteria['2']->bobot / $sum;
+        $kriteria['3']->bobot / $sum;
+        $kriteria['4']->bobot / $sum;
+        $kriteria['5']->bobot / $sum;
+        dd($dataMax3);
+        foreach ($alternatif as $alter) {
             # code...
-            $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
-            $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
-            $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
-            $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
-            $datautility5 = (($datas->c5 - $dataMin5) / ($dataMax5 - $dataMin5));
-            $datautility6 = (($datas->c6 - $dataMin6) / ($dataMax6 - $dataMin6));
-
-            $hitungkali1 = number_format(($hasil_bobot1*$datautility1),4);
-            $hitungkali2 = number_format(($hasil_bobot2*$datautility2),4);
-            $hitungkali3 = number_format(($hasil_bobot3*$datautility3),4);
-            $hitungkali4 = number_format(($hasil_bobot4*$datautility4),4);
-            $hitungkali5 = number_format(($hasil_bobot5*$datautility5),4);
-            $hitungkali6 = number_format(($hasil_bobot6*$datautility6),4);
-            
-            $perhitungan->rank = $data_rank =  ($hitungkali1 + $hitungkali2 + $hitungkali3 + $hitungkali4 + $hitungkali5 + $hitungkali6 );
-            $ddd1 = ($hitungkali1 + $hitungkali2 + $hitungkali3 + $hitungkali4 + $hitungkali5 + $hitungkali6 );
-            $rr = array($ddd1);
-            rsort($rr);
-            // // $cc= implode(" ", $ddd);
-            //     foreach ($rr as $key => $val) {
-            //         echo "$key = $val";
-            //         echo '<br>';
-            //     }
-            
+            $datautility1 = (($alter->nilai_ram - $dataMin1) / ($dataMax1 - $dataMin1));
+            $datautility2 = (($alter->nilai_processor - $dataMin2) / ($dataMax2 - $dataMin2));
+            $datautility3 = (($alter->nilai_display));
+            $datautility4 = (($alter->nilai_storage - $dataMin4) / ($dataMax4 - $dataMin4));
+            $datautility5 = (($alter->nilai_vga - $dataMin5) / ($dataMax5 - $dataMin5));
+            $datautility6 = (($alter->nilai_harga - $dataMin6) / ($dataMax6 - $dataMin6));
         }
-        
-        
-       
-        
-        return $perhitungan;
+        return $data;
     }
     /* 
     *

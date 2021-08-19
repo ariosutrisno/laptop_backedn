@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $ranking->alternatif }}</td>
-                                    <td>{{ $ranking->datalaptop }}</td>
+                                    <td>{{ $ranking->merek_laptop }}</td>
                                     <td>{{ $ranking->hasil_akhir }}</td>
                                 </tr>
                                 @endforeach

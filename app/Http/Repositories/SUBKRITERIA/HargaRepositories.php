@@ -19,14 +19,14 @@ class HargaRepositories
     }
     public function buatdata($request){
         DB::table('tbl_harga')->insert([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_harga'=>$request->nilai_hasil,
+            'harga'=>$request->keterangan,
         ]);
     }
     public function updatedata($request,$idx_harga){
         DB::table('tbl_harga')->where('idx_harga','=',$idx_harga)->update([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_harga'=>$request->nilai_hasil,
+            'harga'=>$request->keterangan,
         ]);
     }
     public function viewdata($idx_harga){

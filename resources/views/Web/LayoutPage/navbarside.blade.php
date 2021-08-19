@@ -36,7 +36,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Laptop</h6>
-                <a class="collapse-item" href="{{ route('datalaptop') }}">All Data Laptop</a>
+                <a class="collapse-item" href="{{ route('datalaptop') }}">Data Laptop</a>
                 <a class="collapse-item" href="{{ route('getKriteria') }}">Data Kriteria</a>
                 <a class="collapse-item" href="{{ route('getAlternatif') }}">Data Alternatif & Utility</a>
                 <a class="collapse-item" href="{{ route('perhitungan') }}">Hasil Perhitungan</a>
@@ -70,7 +70,7 @@
     </li>
     
         <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                 aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
@@ -86,7 +86,7 @@
                     
                 </div>
             </div>
-        </li>
+        </li> --}}
     <!-- Divider -->
     <hr class="sidebar-divider">
 

@@ -18,14 +18,14 @@ class VgaRepositories
     }
     public function buatdata($request){
         DB::table('tbl_vgacard')->insert([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_vga'=>$request->nilai_hasil,
+            'vgacard'=>$request->keterangan,
         ]);
     }
     public function updatedata($request,$idx_vga){
         DB::table('tbl_vgacard')->where('idx_vga','=',$idx_vga)->update([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_vga'=>$request->nilai_hasil,
+            'vgacard'=>$request->keterangan,
         ]);
     }
     public function viewdata($idx_vga){

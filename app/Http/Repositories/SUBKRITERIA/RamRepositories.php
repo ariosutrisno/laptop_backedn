@@ -18,14 +18,14 @@ class RamRepositories
     }
     public function buatdata($request){
         DB::table('tbl_ram')->insert([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_ram'=>$request->nilai_hasil,
+            'ram'=>$request->keterangan,
         ]);
     }
     public function updatedata($request,$idx_ram){
         DB::table('tbl_ram')->where('idx_ram','=',$idx_ram)->update([
-            'nilai_hasil'=>$request->nilai_hasil,
-            'keterangan'=>$request->keterangan,
+            'nilai_ram'=>$request->nilai_hasil,
+            'ram'=>$request->keterangan,
         ]);
     }
     public function viewdata($idx_ram){

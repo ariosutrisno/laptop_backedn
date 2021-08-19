@@ -48,18 +48,23 @@
                         <table id="example" class="table-success" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>NO</th>
                                     <th>Kode Alternatif</th>
                                     <th>Nama Alternatif</th>
                                     <th>Hasil Perhitungan</th>
-                                    <th>Ranking</th>
                                     
                                 </tr>
                             </thead>
-                            <?php $no = 0; ?>
-                            <?php $no++ ?>
                             @php
-                            $perhitungan = DB::table('data_alternatif')->get();
+                            $perhitungan = DB::table('data_alternatif')
+                            ->join('tbl_ram','tbl_ram.idx_ram','=','data_alternatif.idx_ram')
+                            ->join('tbl_processor','tbl_processor.idx_processor','=','data_alternatif.idx_processor')
+                            ->join('tbl_storage','tbl_storage.idx_storage','=','data_alternatif.idx_storage')
+                            ->join('tbl_display','tbl_display.idx_display','=','data_alternatif.idx_display')
+                            ->join('tbl_vgacard','tbl_vgacard.idx_vga','=','data_alternatif.idx_vga_card')
+                            ->join('tbl_harga','tbl_harga.idx_harga','=','data_alternatif.idx_harga')
+                            ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
+                            ->select('tbl_ram.*','tbl_storage.*','tbl_display.*','tbl_vgacard.*','tbl_harga.*','tbl_processor.*','data_alternatif.*','data_laptop.*')
+                            ->get();
                             $data2 = DB::table('data_kriteria')->sum('bobot');
                             $normalisasi_bobot_1 = DB::table('data_kriteria')->select('bobot')
                             ->where('idx_kriteria','=',2)
@@ -88,46 +93,27 @@
                             $hasil_bobot4 = $normalisasi_bobot_4 / $data2;
                             $hasil_bobot5 = $normalisasi_bobot_5 / $data2;
                             $hasil_bobot6 = $normalisasi_bobot_6 / $data2;
-                            $dataMax1 = $perhitungan->max('c1');
-                            $dataMin1 = $perhitungan->min('c1');
-                            $dataMax2 = $perhitungan->max('c2');
-                            $dataMin2 = $perhitungan->min('c2');
-                            $dataMax3 = $perhitungan->max('c3');
-                            $dataMin3 = $perhitungan->min('c3');
-                            $dataMax4 = $perhitungan->max('c4');
-                            $dataMin4 = $perhitungan->min('c4');
-                            $dataMax5 = $perhitungan->max('c5');
-                            $dataMin5 = $perhitungan->min('c5');
-                            $dataMax6 = $perhitungan->max('c6');
-                            $dataMin6 = $perhitungan->min('c6');
-                            foreach ($perhitungan as $datas) {
-                                # code...
-                                $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
-                                $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
-                                $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
-                                $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
-                                $datautility5 = (($datas->c5 - $dataMin5) / ($dataMax5 - $dataMin5));
-                                $datautility6 = (($datas->c6 - $dataMin6) / ($dataMax6 - $dataMin6));
-
-                                $hitungkali1 = number_format(($hasil_bobot1*$datautility1),4);
-                                $hitungkali2 = number_format(($hasil_bobot2*$datautility2),4);
-                                $hitungkali3 = number_format(($hasil_bobot3*$datautility3),4);
-                                $hitungkali4 = number_format(($hasil_bobot4*$datautility4),4);
-                                $hitungkali5 = number_format(($hasil_bobot5*$datautility5),4);
-                                $hitungkali6 = number_format(($hasil_bobot6*$datautility6),4);
-                                
-                                $perhitungan->rank = ($hitungkali1 + $hitungkali2 + $hitungkali3 + $hitungkali4 + $hitungkali5 + $hitungkali6 );
-                                
-                            }
+                            $dataMax1 = $perhitungan->max('nilai_ram');
+                            $dataMin1 = $perhitungan->min('nilai_ram');
+                            $dataMax2 = $perhitungan->max('nilai_processor');
+                            $dataMin2 = $perhitungan->min('nilai_processor');
+                            $dataMax3 = $perhitungan->max('nilai_display');
+                            $dataMin3 = $perhitungan->min('nilai_display');
+                            $dataMax4 = $perhitungan->max('nilai_storage');
+                            $dataMin4 = $perhitungan->min('nilai_storage');
+                            $dataMax5 = $perhitungan->max('nilai_vga');
+                            $dataMin5 = $perhitungan->min('nilai_vga');
+                            $dataMax6 = $perhitungan->max('nilai_harga');
+                            $dataMin6 = $perhitungan->min('nilai_harga');
                         @endphp
                             @foreach ($perhitungan as $datas)
                             @php
-                                    $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
-                                    $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
-                                    $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
-                                    $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
-                                    $datautility5 = (($datas->c5 - $dataMin5) / ($dataMax5 - $dataMin5));
-                                    $datautility6 = (($datas->c6 - $dataMin6) / ($dataMax6 - $dataMin6));
+                                    $datautility1 = (($datas->nilai_ram - $dataMin1) / ($dataMax1 - $dataMin1));
+                                    $datautility2 = (($datas->nilai_processor - $dataMin2) / ($dataMax2 - $dataMin2));
+                                    $datautility3 = (($datas->nilai_display - $dataMin3) / ($dataMax3 - $dataMin3));
+                                    $datautility4 = (($datas->nilai_storage - $dataMin4) / ($dataMax4 - $dataMin4));
+                                    $datautility5 = (($datas->nilai_vga - $dataMin5) / ($dataMax5 - $dataMin5));
+                                    $datautility6 = (($datas->nilai_harga - $dataMin6) / ($dataMax6 - $dataMin6));
 
                                     $hitungkali1 = number_format(($hasil_bobot1*$datautility1),4);
                                     $hitungkali2 = number_format(($hasil_bobot2*$datautility2),4);
@@ -141,11 +127,10 @@
                             @endphp
                             <tbody>
                                 <tr>
-                                    <td>{{ $no++ }}</td>
                                     <td>{{ $datas->alternatif }}</td>
-                                    <td>{{ $datas->datalaptop }}</td>
-                                    <td class="total">{{ $perhitungan->rank }}</td>
-                                    <td></td>
+                                    <td>{{ $datas->merek_laptop }}</td>
+                                    <td>{{ $perhitungan->rank }}</td>
+                                    {{-- <td></td> --}}
                                 </tr>
                             </tbody>
                             @endforeach
@@ -185,7 +170,7 @@
                 <div class="modal-body">
                     <form action="{{ route('posthitung') }}" method="POST">
                         @csrf
-                        @include('Web.DataPerhitungan.create')
+                        {{-- @include('Web.DataPerhitungan.create') --}}
                     </form>
                 </div>
             </div>

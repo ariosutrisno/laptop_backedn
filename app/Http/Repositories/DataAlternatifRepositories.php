@@ -20,8 +20,16 @@ class DataAlternatifRepositories
     }
     public function listData()
     {
-
-        $data = DB::table('data_alternatif')->get();
+        $data = DB::table('data_alternatif')
+        ->join('tbl_ram','tbl_ram.idx_ram','=','data_alternatif.idx_ram')
+        ->join('tbl_processor','tbl_processor.idx_processor','=','data_alternatif.idx_processor')
+        ->join('tbl_storage','tbl_storage.idx_storage','=','data_alternatif.idx_storage')
+        ->join('tbl_display','tbl_display.idx_display','=','data_alternatif.idx_display')
+        ->join('tbl_vgacard','tbl_vgacard.idx_vga','=','data_alternatif.idx_vga_card')
+        ->join('tbl_harga','tbl_harga.idx_harga','=','data_alternatif.idx_harga')
+        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
+        ->select('tbl_ram.*','tbl_storage.*','tbl_display.*','tbl_vgacard.*','tbl_harga.*','tbl_processor.*','data_alternatif.*','data_laptop.*')
+        ->get();
         return $data;
     }
     public function createdata($request)
@@ -31,12 +39,12 @@ class DataAlternatifRepositories
         DB::table('data_alternatif')->insert([
             'alternatif'=>$array,
             'datalaptop'=>$request->input('datalaptop'),
-            'c1'=>$request->input('c1'),
-            'c2'=>$request->input('c2'),
-            'c3'=>$request->input('c3'),
-            'c4'=>$request->input('c4'),
-            'c5'=>$request->input('c5'),
-            'c6'=>$request->input('c6'),
+            'idx_ram'=>$request->input('c1'),
+            'idx_processor'=>$request->input('c2'),
+            'idx_display'=>$request->input('c3'),
+            'idx_storage'=>$request->input('c4'),
+            'idx_vga_card'=>$request->input('c5'),
+            'idx_harga'=>$request->input('c6'),
             
         ]);
     }
