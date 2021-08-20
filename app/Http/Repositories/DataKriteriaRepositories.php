@@ -61,5 +61,11 @@ class DataKriteriaRepositories
         }
         return $data_urut;
     }
-
+    /* KRITERIA MOBILE */
+    function kriteria_mobile(){
+        $data = new DataKriteriaRepositories;
+        $data->sum = DB::table('data_kriteria')->sum('bobot');
+        $data->kriteria = DB::table('data_kriteria')->get();
+        return $data;
+    }
 }

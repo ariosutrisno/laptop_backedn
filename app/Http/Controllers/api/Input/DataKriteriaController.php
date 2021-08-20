@@ -30,4 +30,13 @@ class DataKriteriaController extends ApiController
             return $this->sendResponse(0, 19, []);
         }
     }
+    public function normalisasi()
+    {
+        $getKriteria = $this->data_kriteria->kriteria_mobile();
+        if (collect($getKriteria)->count()) {
+            return $this->sendResponse(0, 19, $getKriteria);
+        } else {
+            return $this->sendResponse(0, 19, []);
+        }
+    }
 }

@@ -43,6 +43,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 
     //Data Kriteria && Normalisasi
     Route::get('datakriteria', 'api\Input\DataKriteriaController@getAll');
+    Route::get('datanormalisasi', 'api\Input\DataKriteriaController@normalisasi');
 
     // Data Alternatif
     Route::get('alternatif','api\Input\DataAlternatifController@getData');
