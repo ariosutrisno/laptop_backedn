@@ -203,13 +203,11 @@
     // EDIT
 
 $('.btn-edit').on('click',function () {
-    // console.log($(this).data('id'))
     let id = $(this).data('id')
     $.ajax({
         url: `/dataKriteria/${id}/edit`,
         method:"GET",
         success: function (data) {
-            // console.log(data)
             $('#modaledit').find('.modal-body').html(data)
             $('#modaledit').modal('show')
         },
@@ -221,7 +219,6 @@ $('.btn-edit').on('click',function () {
 
 // update
 $('.btn-update').on('click',function () {
-    // console.log($(this).data('id'))
     let dataKriteria = $('#editForm').find('#idx_kriteria').val()
     let formData = $('#editForm').serialize()
     $.ajax({

@@ -39,8 +39,8 @@
                     <h1 class="h3 mb-4 text-gray-800">Hasil Perhitungan </h1>
                     <div class="float-right">
                         <div class="btn-group mb-3" role="group" aria-label="Basic mixed styles example">
-                            <a href="{{ route('getRangking') }}" class="btn btn-success">Ranking</a>
-                            <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal">Save Data Rank</button>
+                            {{-- <a href="{{ route('getRangking') }}" class="btn btn-success">Ranking</a> --}}
+                            <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" hidden>Save Data Rank</button>
                         </div>
                     </div>
                     
@@ -170,7 +170,7 @@
                 <div class="modal-body">
                     <form action="{{ route('posthitung') }}" method="POST">
                         @csrf
-                        {{-- @include('Web.DataPerhitungan.create') --}}
+                        @include('Web.DataPerhitungan.create')
                     </form>
                 </div>
             </div>

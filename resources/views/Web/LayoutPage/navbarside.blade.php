@@ -40,7 +40,7 @@
                 <a class="collapse-item" href="{{ route('getKriteria') }}">Data Kriteria</a>
                 <a class="collapse-item" href="{{ route('getAlternatif') }}">Data Alternatif & Utility</a>
                 <a class="collapse-item" href="{{ route('perhitungan') }}">Hasil Perhitungan</a>
-                <a class="collapse-item" href="{{ route('getRangking') }}">Ranking</a>
+                {{-- <a class="collapse-item" href="{{ route('getRangking') }}">Ranking</a> --}}
                 <a class="collapse-item" href="{{ route('datarekomendasi') }}">Data Request Customer</a>
             </div>
         </div>

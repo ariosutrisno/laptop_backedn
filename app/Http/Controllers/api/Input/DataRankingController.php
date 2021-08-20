@@ -38,14 +38,5 @@ class DataRankingController extends ApiController
             return $this->sendResponse(0, 19, []);
         }
     }
-    public function allRank()
-    {
-        $filter = $this->dataranking->allrank();
-        if (collect($filter)->count()) {
-            return $this->sendResponse(0, 19, $filter);
-        } else {
-            return $this->sendResponse(0, 19, []);
-        }
-    }
 
 }

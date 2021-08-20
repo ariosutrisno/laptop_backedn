@@ -66,8 +66,8 @@
                                             <td>{{ $item->harga }}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href=""  data-toggle="modal" data-id="" data-target="#modaledit" class="btn btn-warning btn-edit">Edit</a>
-                                                    <a href="" class="btn btn-danger">Delete</a>
+                                                    <a data-toggle="modal" data-id="{{ $item->idx_alternatif }}" data-target="#modaledit" class="btn btn-warning btn-edit">Edit</a>
+                                                    <a href="{{ route('deleteDataAlternatif', $item->idx_alternatif) }}" class="btn btn-danger">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -190,7 +190,7 @@
     </a>
 
     
-    <!-- INPUT DATA LAPTOP MODAL -->
+    <!-- INPUT DATA ALTERNATIF MODAL -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -206,6 +206,26 @@
                         @include('Web.DataAlternatif.create')
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INPUT DATA ALTERNATIF EDIT MODAL -->
+    <div class="modal fade" id="modaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Alternatif</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="edit_alternatif">
+                    @csrf
+                    <div class="modal-body">
+
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -230,5 +250,26 @@
             $('#dtHorizontalVerticalExample4').DataTable();
             $('.dataTables_length').addClass('bs-select');
             });
+</script>
+<script>
+    /* 
+    *
+    *EDIT DATA ALTERNATIF
+    */
+    $('.btn-edit').on('click',function () {
+    let id = $(this).data('id')
+    console.log(id)
+    $.ajax({
+        url: `/dataAlternatif/${id}/edit`,
+        method:"GET",
+        success: function (data) {
+            $('#modaledit').find('.modal-body').html(data)
+            $('#modaledit').modal('show')
+        },
+        error:function (error) {
+            console.log(error)
+        }
+    })
+})
 </script>
 @endsection

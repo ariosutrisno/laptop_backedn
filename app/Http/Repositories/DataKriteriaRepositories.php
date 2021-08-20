@@ -61,20 +61,5 @@ class DataKriteriaRepositories
         }
         return $data_urut;
     }
-    /* 
-    *
-    * API DATA KRITERIA NORMALIASISI
-    *
-    */
-    public function normalisasi(){
-        $data_normalisasi = new DataLaptopNormalisasiRepositories();
-        $data_normalisasi->total_data_kriteria = $total_kriteria = DB::table('data_kriteria')->sum('bobot');
-        $data_normalisasi->data_kriteria = DB::table('data_kriteria')->get();
-        $data_normalisasi->data_kriteria_get = $data_kriteria_get =  DB::table('data_kriteria')->get();
-        for ($i=0; $i < count($data_kriteria_get); $i++) { 
-            # code...
-            $data_kriteria_get[$i] = round($data_kriteria_get[$i]->bobot / $total_kriteria,3);
-        }
-        return $data_normalisasi;
-    }
+
 }

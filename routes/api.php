@@ -48,8 +48,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
     // Data Alternatif
     Route::get('alternatif','api\Input\DataAlternatifController@getData');
     Route::get('utility', 'api\Input\DataAlternatifController@utility');
-    Route::get('ranking/all', 'api\Input\DataRankingController@allRank');
-    Route::get('ranking', 'api\Input\DataRankingController@getAllData');
     
     /* ROUTE FILTER DATA */
     Route::get('filter', 'api\Input\DataRankingController@datafilter');

@@ -2,7 +2,7 @@
 <div class="form-group">
     <label for="exampleFormControlInput1">Nama Alternatif</label>
     <select class="form-control" name="alternatif"  id="exampleFormControlInput1">
-        @foreach ($data_tampil as $item)
+        @foreach ($alternatif as $item)
             <option  value="{{ $item->idx_alternatif }}">{{ $item->alternatif }}</option>
         @endforeach
     </select>
@@ -12,12 +12,12 @@
     <select class="form-control" name="ranking"  id="exampleFormControlInput1">
         @foreach ($perhitungan as $datas)
         @php
-            $datautility1 = (($datas->c1 - $dataMin1) / ($dataMax1 - $dataMin1));
-                $datautility2 = (($datas->c2 - $dataMin2) / ($dataMax2 - $dataMin2));
-                $datautility3 = (($datas->c3 - $dataMin3) / ($dataMax3 - $dataMin3));
-                $datautility4 = (($datas->c4 - $dataMin4) / ($dataMax4 - $dataMin4));
-                $datautility5 = (($datas->c5 - $dataMin5) / ($dataMax5 - $dataMin5));
-                $datautility6 = (($datas->c6 - $dataMin6) / ($dataMax6 - $dataMin6));
+                $datautility1 = (($datas->nilai_ram - $dataMin1) / ($dataMax1 - $dataMin1));
+                $datautility2 = (($datas->nilai_processor - $dataMin2) / ($dataMax2 - $dataMin2));
+                $datautility3 = (($datas->nilai_display - $dataMin3) / ($dataMax3 - $dataMin3));
+                $datautility4 = (($datas->nilai_storage - $dataMin4) / ($dataMax4 - $dataMin4));
+                $datautility5 = (($datas->nilai_vga - $dataMin5) / ($dataMax5 - $dataMin5));
+                $datautility6 = (($datas->nilai_harga - $dataMin6) / ($dataMax6 - $dataMin6));
 
                 $hitungkali1 = number_format(($hasil_bobot1*$datautility1),4);
                 $hitungkali2 = number_format(($hasil_bobot2*$datautility2),4);

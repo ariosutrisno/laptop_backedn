@@ -30,13 +30,4 @@ class DataKriteriaController extends ApiController
             return $this->sendResponse(0, 19, []);
         }
     }
-    public function normalisasi()
-    {
-        $normalisasi = $this->data_kriteria->normalisasi();
-        if (collect($normalisasi)->count()) {
-            return $this->sendResponse(0, 19, $normalisasi);
-        } else {
-            return $this->sendResponse(0, 19, []);
-        }
-    }
 }

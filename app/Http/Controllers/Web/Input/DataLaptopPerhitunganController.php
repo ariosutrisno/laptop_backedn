@@ -26,8 +26,8 @@ class DataLaptopPerhitunganController extends Controller
     
     public function perhitungan()
     {
-        // $hasil_akhir = $this->perhitungan->hasilperhitungan();
-        return view('Web.DataPerhitungan.index');
+        $alternatif = $this->perhitungan->dataalternatif();
+        return view('Web.DataPerhitungan.index',compact('alternatif'));
     }
     
     public function posthitung(Request $request)
