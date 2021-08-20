@@ -38,5 +38,14 @@ class DataAlternatifController extends ApiController
             return $this->sendResponse(0, 19, []);
         }
     }
+    public function ranking(Request $request)
+    {
+        $utility = $this->alternatif->ranking($request);
+        if (collect($utility)->count()) {
+            return $this->sendResponse(0, 19,$utility);
+        } else {
+            return $this->sendResponse(0, 19, []);
+        }
+    }
 
 }
