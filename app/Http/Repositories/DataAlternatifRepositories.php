@@ -128,10 +128,10 @@ class DataAlternatifRepositories
         ->join('tbl_harga','tbl_harga.idx_harga','=','data_alternatif.idx_harga')
         ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
         ->select('tbl_ram.*','tbl_storage.*','tbl_display.*','tbl_vgacard.*','tbl_harga.*','tbl_processor.*','data_alternatif.*','data_laptop.*');
-        (!empty($merek_laptop))? $filter->where('data_alter', 'LIKE', '%' . $merek_laptop . '%'):'';
-        (!empty($ram))? $filter->where('idx_ram', 'LIKE', '%' . $ram . '%'):'';
-        (!empty($processor))? $filter->where('idx_processor', 'LIKE', '%' . $processor . '%'):'';
-        (!empty($harga))? $filter->where('idx_harga', 'LIKE', '%' . $harga . '%'):'';
+        (!empty($merek_laptop))? $filter->where('data_alternatif.data_alter', 'LIKE', '%' . $merek_laptop . '%'):'';
+        (!empty($ram))? $filter->where('data_alternatif.idx_ram', 'LIKE', '%' . $ram . '%'):'';
+        (!empty($processor))? $filter->where('data_alternatif.idx_processor', 'LIKE', '%' . $processor . '%'):'';
+        (!empty($harga))? $filter->where('data_alternatif.idx_harga', 'LIKE', '%' . $harga . '%'):'';
         $data->filter = $filter->get();
         
         $alternatif = DB::table('data_alternatif')
