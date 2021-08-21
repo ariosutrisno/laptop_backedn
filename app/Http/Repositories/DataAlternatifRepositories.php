@@ -119,19 +119,19 @@ class DataAlternatifRepositories
         $harga = $request->harga;
         $kriteria = DB::table('data_kriteria')->get();
         $sum = DB::table('data_kriteria')->sum('bobot');
-         $filter = DB::table('data_alternatif')
-        ->join('tbl_ram','tbl_ram.idx_ram','=','data_alternatif.idx_ram')
-        ->join('tbl_processor','tbl_processor.idx_processor','=','data_alternatif.idx_processor')
-        ->join('tbl_storage','tbl_storage.idx_storage','=','data_alternatif.idx_storage')
-        ->join('tbl_display','tbl_display.idx_display','=','data_alternatif.idx_display')
-        ->join('tbl_vgacard','tbl_vgacard.idx_vga','=','data_alternatif.idx_vga_card')
-        ->join('tbl_harga','tbl_harga.idx_harga','=','data_alternatif.idx_harga')
-        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
-        ->select('tbl_ram.*','tbl_storage.*','tbl_display.*','tbl_vgacard.*','tbl_harga.*','tbl_processor.*','data_alternatif.*','data_laptop.*');
-        (!empty($merek_laptop))? $filter->where('data_laptop.merek_laptop', 'LIKE', '%' . $merek_laptop . '%'):'';
-        (!empty($ram))? $filter->where('tbl_ram.ram', 'LIKE', '%' . $ram . '%'):'';
-        (!empty($processor))? $filter->where('tbl_processor.processor', 'LIKE', '%' . $processor . '%'):'';
-        (!empty($harga))? $filter->where('tbl_harga.harga', 'LIKE', '%' . $harga . '%'):'';
+         $filter = DB::table('data_alternatif');
+        // ->join('tbl_ram','tbl_ram.idx_ram','=','data_alternatif.idx_ram')
+        // ->join('tbl_processor','tbl_processor.idx_processor','=','data_alternatif.idx_processor')
+        // ->join('tbl_storage','tbl_storage.idx_storage','=','data_alternatif.idx_storage')
+        // ->join('tbl_display','tbl_display.idx_display','=','data_alternatif.idx_display')
+        // ->join('tbl_vgacard','tbl_vgacard.idx_vga','=','data_alternatif.idx_vga_card')
+        // ->join('tbl_harga','tbl_harga.idx_harga','=','data_alternatif.idx_harga')
+        // ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
+        // ->select('tbl_ram.*','tbl_storage.*','tbl_display.*','tbl_vgacard.*','tbl_harga.*','tbl_processor.*','data_alternatif.*','data_laptop.*');
+        (!empty($merek_laptop))? $filter->where('data_alter', 'LIKE', '%' . $merek_laptop . '%'):'';
+        (!empty($ram))? $filter->where('idx_ram', 'LIKE', '%' . $ram . '%'):'';
+        (!empty($processor))? $filter->where('idx_processor', 'LIKE', '%' . $processor . '%'):'';
+        (!empty($harga))? $filter->where('idx_harga', 'LIKE', '%' . $harga . '%'):'';
         $data->filter = $filter->get();
         
         $alternatif = DB::table('data_alternatif')
