@@ -59,8 +59,9 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
+                
+                <!-- SESSION LOGIN -->
                 <div class="container-fluid">
                     @if (session('logSuc'))
                         <div class="alert alert-success" role="alert">
