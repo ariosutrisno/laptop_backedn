@@ -61,14 +61,15 @@
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 
-                <!-- SESSION LOGIN -->
                 <div class="container-fluid">
+                    <!-- SESSION LOGIN -->
                     @if (session('logSuc'))
                         <div class="alert alert-success" role="alert">
                             <span class="badge badge-success">Success</span>
                             {{ session('logSuc') }}
                         </div>
                     @endif
+                     <!-- SESSION LOGIN -->
                     <!-- Page Heading -->
                     <h5 class="mb-4 text-gray-800">SISTEM PENDUKUNG KEPUTUSAN PEMILIHAN LAPTOP</h5>
 
