@@ -62,7 +62,12 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    @if (session('logSuc'))
+                        <div class="alert alert-success" role="alert">
+                            <span class="badge badge-success">Success</span>
+                            {{ session('logSuc') }}
+                        </div>
+                    @endif
                     <!-- Page Heading -->
                     <h5 class="mb-4 text-gray-800">SISTEM PENDUKUNG KEPUTUSAN PEMILIHAN LAPTOP</h5>
 
