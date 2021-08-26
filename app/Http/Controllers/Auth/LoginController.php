@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\JsonResponse;
 class LoginController extends Controller
 {
     /*
@@ -47,8 +47,23 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
 {
         if ($user->hasRole('admin')) {
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard')->with('logSuc', 'login Success!');
         }
         return redirect()->route('home');
     }
+    protected function sendLoginResponse(Request $request)
+    {
+    
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
+            return $response;
+        }
+        return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect()->intended($this->redirectPath());
+    }
+
 }

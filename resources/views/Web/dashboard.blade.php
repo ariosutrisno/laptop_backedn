@@ -63,7 +63,7 @@
                 
                 <div class="container-fluid">
                     <!-- SESSION LOGIN -->
-                    @if (session('logic'))
+                    @if (session('logSuc'))
                         <div class="alert alert-success" role="alert">
                             <span class="badge badge-success">Success</span>
                             {{ session('logSuc') }}
