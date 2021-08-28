@@ -32,7 +32,7 @@
                 <div class="container-fluid"  style="overflow-x:auto;">
                     
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Data Storage</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Data VGA CARD</h1>
                     <div class="float-right">
                         <div class="btn-group mb-3" role="group" aria-label="Basic mixed styles example">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
@@ -55,7 +55,7 @@
                                     <?php $no++ ?>
                                     <tr>
                                         <td>{{ $no }}</td>
-                                        <td>{{ $item->vgacard }}</td>
+                                        <td>{{ $item->nama_vgacard }}</td>
                                         <td>{{ $item->nilai_vga }}</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">

@@ -6,5 +6,5 @@
 </div>
 <div class="form-group">
     <label for="exampleFormControlInput1">Keterangan</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Keterangan" name="keterangan" value="{{ $data->processor }}">
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Keterangan" name="keterangan" value="{{ $data->nama_processor }}">
 </div>

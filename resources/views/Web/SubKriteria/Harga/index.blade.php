@@ -57,7 +57,7 @@
                                     <?php $no++ ?>
                                     <tr>
                                         <td>{{ $no }}</td>
-                                        <td>{{ $item->harga }}</td>
+                                        <td>{{ $item->nama_harga }}</td>
                                         <td>{{ $item->nilai_harga }}</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">

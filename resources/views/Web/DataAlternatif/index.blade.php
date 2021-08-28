@@ -32,6 +32,12 @@
                     
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Data Alternatif</h1>
+                    @if (session('message'))
+                    <div class="alert alert-success" style="display:none">
+                        <div class="alert-title">Success</div>
+                        {{ session('message') }}
+                      </div>
+                    @endif
                     <div class="float-right">
                         <div class="btn-group mb-3" role="group" aria-label="Basic mixed styles example">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
@@ -58,12 +64,12 @@
                                         <tr>
                                             <td>{{ $item->alternatif }}</td>
                                             <td>{{ $item->merek_laptop }}</td>
-                                            <td>{{ $item->ram }}</td>
-                                            <td>{{ $item->processor }}</td>
-                                            <td>{{ $item->display }}</td>
-                                            <td>{{ $item->storage }}</td>
-                                            <td>{{ $item->vgacard }}</td>
-                                            <td>{{ $item->harga }}</td>
+                                            <td>{{ $item->nama_ram }}</td>
+                                            <td>{{ $item->nama_processor }}</td>
+                                            <td>{{ $item->nama_display }}</td>
+                                            <td>{{ $item->nama_storage }}</td>
+                                            <td>{{ $item->nama_vgacard }}</td>
+                                            <td>{{ $item->nama_harga }}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <a data-toggle="modal" data-id="{{ $item->idx_alternatif }}" data-target="#modaledit" class="btn btn-warning btn-edit">Edit</a>
@@ -225,6 +231,10 @@
                     <div class="modal-body">
 
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary btn-update">Save changes</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -265,6 +275,28 @@
         success: function (data) {
             $('#modaledit').find('.modal-body').html(data)
             $('#modaledit').modal('show')
+        },
+        error:function (error) {
+            console.log(error)
+        }
+    })
+})
+/* 
+*
+* UPDATE DATA ALTERNATIF
+*/
+$('.btn-update').on('click',function () {
+    let dataalternatif = $('#edit_alternatif').find('#alternatif').val()
+    let formData = $('#edit_alternatif').serialize()
+    $.ajax({
+        url: `/dataAlternatif/${dataalternatif}/update`,
+        method:"POST",
+        data : formData,
+        success: function (data) {
+            $(".alert-success").css("display", "block");
+            $(".alert-success").append("<P>This is a message</p>");
+            $('edit_alternatif').hide()
+            window.location.assign('/dataAlternatif')
         },
         error:function (error) {
             console.log(error)

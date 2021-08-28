@@ -44,15 +44,13 @@ class DataLaptopAlternatifController extends Controller
 
     public function EditDataAlternatif($idx_alternatif)
     {
-        $data = $this->dataalternatif->dataView($idx_alternatif);
-        
-        return view('Web.DataAlternatif.edit',compact('data'));
+        $dataAlternatif = $this->dataalternatif->dataView($idx_alternatif);
+        return view('Web.DataAlternatif.edit',compact('dataAlternatif'));
     }
 
     public function updateDataAlternatif(Request $request, $idx_alternatif)
     {
         $this->dataalternatif->updateData($request,$idx_alternatif);
-        return redirect()->back();
     }
 
     /**

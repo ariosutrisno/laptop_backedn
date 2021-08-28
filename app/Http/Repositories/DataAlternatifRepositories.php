@@ -36,7 +36,6 @@ class DataAlternatifRepositories
     public function createdata($request)
     {
         $array = $this->array();
-        // dd($request->input('idx_datalaptop'));
         DB::table('data_alternatif')->insert([
             'alternatif'=>$array,
             'data_alter'=>$request->input('datalaptop'),
@@ -52,23 +51,27 @@ class DataAlternatifRepositories
     public function dataView($idx_alternatif)
     {
         $data = new DataAlternatifRepositories;
-        $data = DB::table('data_alternatif')->where('idx_alternatif','=',$idx_alternatif)
-        ->join('tbl_ram','tbl_ram.idx_ram','=','data_alternatif.idx_ram')
-        ->join('tbl_processor','tbl_processor.idx_processor','=','data_alternatif.idx_processor')
-        ->join('tbl_storage','tbl_storage.idx_storage','=','data_alternatif.idx_storage')
-        ->join('tbl_display','tbl_display.idx_display','=','data_alternatif.idx_display')
-        ->join('tbl_vgacard','tbl_vgacard.idx_vga','=','data_alternatif.idx_vga_card')
-        ->join('tbl_harga','tbl_harga.idx_harga','=','data_alternatif.idx_harga')
-        ->join('data_laptop','data_laptop.idx_datalaptop','=','data_alternatif.data_alter')
-        ->select('tbl_ram.*','tbl_storage.*','tbl_display.*','tbl_vgacard.*','tbl_harga.*','tbl_processor.*','data_alternatif.*','data_laptop.*')
-        ->get();
-        $data->id = DB::table('data_alternatif')->where('idx_alternatif','=',$idx_alternatif)->first();
+        $data->alternatif = DB::table('data_alternatif')->where('idx_alternatif','=',$idx_alternatif)->first();
+        $this->datalaptop();
+        $this->procesor();
+        $this->ram();
+        $this->display();
+        $this->storage();
+        $this->harga();
+        $this->vga();
         return $data;
     }
     public function updateData($request,$idx_alternatif)
     {
+        
         $data = DB::table('data_alternatif')->where('idx_alternatif','=',$idx_alternatif)->update([
-
+            'data_alter'=>$request->input('datalaptop'),
+            'idx_ram'=>$request->input('c1'),
+            'idx_processor'=>$request->input('c2'),
+            'idx_display'=>$request->input('c3'),
+            'idx_storage'=>$request->input('c4'),
+            'idx_vga_card'=>$request->input('c5'),
+            'idx_harga'=>$request->input('c6'),
         ]);
         return $data;
     }
