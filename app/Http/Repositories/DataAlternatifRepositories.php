@@ -120,6 +120,9 @@ class DataAlternatifRepositories
         $merek_laptop = $request->merek_laptop;
         $processor = $request->processor;
         $harga = $request->harga;
+        $vga = $request->vga_card;
+        $storage = $request->storage;
+        $display = $request->display;
         $kriteria = DB::table('data_kriteria')->get();
         $sum = DB::table('data_kriteria')->sum('bobot');
         $filter = DB::table('data_alternatif')
@@ -135,6 +138,9 @@ class DataAlternatifRepositories
         (!empty($ram))? $filter->where('data_alternatif.idx_ram', 'LIKE', '%' . $ram . '%'):'';
         (!empty($processor))? $filter->where('data_alternatif.idx_processor', 'LIKE', '%' . $processor . '%'):'';
         (!empty($harga))? $filter->where('data_alternatif.idx_harga', 'LIKE', '%' . $harga . '%'):'';
+        (!empty($storage))? $filter->where('data_alternatif.idx_storage', 'LIKE', '%' . $storage . '%'):'';
+        (!empty($vga))? $filter->where('data_alternatif.idx_vga_card', 'LIKE', '%' . $vga . '%'):'';
+        (!empty($display))? $filter->where('data_alternatif.idx_display', 'LIKE', '%' . $display . '%'):'';
         $data->filter = $filter->get();
         
         $alternatif = DB::table('data_alternatif')

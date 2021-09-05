@@ -32,12 +32,10 @@
                     
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Data Alternatif</h1>
-                    @if (session('message'))
-                    <div class="alert alert-success" style="display:none">
+                    {{-- <div class="alert alert-success" role="alert" id="success">
                         <div class="alert-title">Success</div>
-                        {{ session('message') }}
-                      </div>
-                    @endif
+                        Data berhasil Dirubah
+                      </div> --}}
                     <div class="float-right">
                         <div class="btn-group mb-3" role="group" aria-label="Basic mixed styles example">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Tambah Data</button>
@@ -266,6 +264,7 @@
     *
     *EDIT DATA ALTERNATIF
     */
+
     $('.btn-edit').on('click',function () {
     let id = $(this).data('id')
     console.log(id)
@@ -285,6 +284,9 @@
 *
 * UPDATE DATA ALTERNATIF
 */
+$(document).ready(function(){
+	 $('#success').hide();
+	});
 $('.btn-update').on('click',function () {
     let dataalternatif = $('#edit_alternatif').find('#alternatif').val()
     let formData = $('#edit_alternatif').serialize()
@@ -293,8 +295,6 @@ $('.btn-update').on('click',function () {
         method:"POST",
         data : formData,
         success: function (data) {
-            $(".alert-success").css("display", "block");
-            $(".alert-success").append("<P>This is a message</p>");
             $('edit_alternatif').hide()
             window.location.assign('/dataAlternatif')
         },
